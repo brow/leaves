@@ -10,69 +10,90 @@
 
 @implementation LeavesView
 
+@synthesize leafEdge;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-		leafEdge = 1.0;
+		topPage = [[CALayer alloc] init];
 		
-		topPageLayer = [[CALayer alloc] init];
+		topPageImage = [[CALayer alloc] init];
+		topPageImage.masksToBounds = YES;
+		topPageImage.contentsGravity = kCAGravityLeft;
+		topPageImage.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
 		
-		topPageImageLayer = [[CALayer alloc] init];
-		topPageImageLayer.masksToBounds = YES;
-		topPageImageLayer.contentsGravity = kCAGravityLeft;
-		topPageImageLayer.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
-		
-		topPageShadowLayer = [[CAGradientLayer alloc] init];
-		topPageShadowLayer.colors = [NSArray arrayWithObjects:
+		topPageShadow = [[CAGradientLayer alloc] init];
+		topPageShadow.colors = [NSArray arrayWithObjects:
 										(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
 										(id)[[UIColor clearColor] CGColor],
 										nil];
-		topPageShadowLayer.startPoint = CGPointMake(1,0.5);
-		topPageShadowLayer.endPoint = CGPointMake(0,0.5);
+		topPageShadow.startPoint = CGPointMake(1,0.5);
+		topPageShadow.endPoint = CGPointMake(0,0.5);
 		
-		reverseLayer = [[CALayer alloc] init];
+		topPageReverse = [[CALayer alloc] init];
+		topPageReverse.masksToBounds = YES;
 		
-		reverseImageLayer = [[CALayer alloc] init];
-		reverseImageLayer.masksToBounds = YES;
-		reverseImageLayer.contentsGravity = kCAGravityRight;
-		reverseImageLayer.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
+		topPageReverseImage = [[CALayer alloc] init];
+		topPageReverseImage.masksToBounds = YES;
+		topPageReverseImage.contentsGravity = kCAGravityRight;
+		topPageReverseImage.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
 		
-		reverseOverlayLayer = [[CALayer alloc] init];
-		reverseOverlayLayer.backgroundColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
+		topPageReverseOverlay = [[CALayer alloc] init];
+		topPageReverseOverlay.backgroundColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
 		
-		bottomPageLayer = [[CALayer alloc] init];
-		bottomPageLayer.contents = (id)[[UIImage imageNamed:@"kitten2.png"] CGImage];
+		topPageReverseShading = [[CAGradientLayer alloc] init];
+		topPageReverseShading.colors = [NSArray arrayWithObjects:
+								(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+								(id)[[UIColor clearColor] CGColor],
+								nil];
+		topPageReverseShading.startPoint = CGPointMake(1,0.5);
+		topPageReverseShading.endPoint = CGPointMake(0,0.5);
 		
-		bottomPageShadowLayer = [[CAGradientLayer alloc] init];
-		bottomPageShadowLayer.colors = [NSArray arrayWithObjects:
+		bottomPage = [[CALayer alloc] init];
+		bottomPage.masksToBounds = YES;
+		bottomPage.contents = (id)[[UIImage imageNamed:@"kitten2.png"] CGImage];
+		
+		bottomPageShadow = [[CAGradientLayer alloc] init];
+		bottomPageShadow.colors = [NSArray arrayWithObjects:
 										(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
 										(id)[[UIColor clearColor] CGColor],
 										nil];
-		bottomPageShadowLayer.startPoint = CGPointMake(0,0.5);
-		bottomPageShadowLayer.endPoint = CGPointMake(1,0.5);
+		bottomPageShadow.startPoint = CGPointMake(0,0.5);
+		bottomPageShadow.endPoint = CGPointMake(1,0.5);
 		
-		[topPageLayer addSublayer:topPageImageLayer];
-		[topPageLayer addSublayer:topPageShadowLayer];
-		[reverseLayer addSublayer:reverseImageLayer];
-		[reverseLayer addSublayer:reverseOverlayLayer];
-		[bottomPageLayer addSublayer:bottomPageShadowLayer];
-		[self.layer addSublayer:bottomPageLayer];
-		[self.layer addSublayer:topPageLayer];
-		[self.layer addSublayer:reverseLayer];
+		[topPage addSublayer:topPageImage];
+		[topPage addSublayer:topPageShadow];
+		[topPageReverse addSublayer:topPageReverseImage];
+		[topPageReverse addSublayer:topPageReverseOverlay];
+		[topPageReverse addSublayer:topPageReverseShading];
+		[bottomPage addSublayer:bottomPageShadow];
+		[self.layer addSublayer:bottomPage];
+		[self.layer addSublayer:topPage];
+		[self.layer addSublayer:topPageReverse];
+		
+		self.leafEdge = 1.0;
     }
     return self;
 }
 
 - (void)dealloc {
-	[topPageLayer release];
-	[topPageImageLayer release];
-	[topPageShadowLayer release];
-	[reverseLayer release];
-	[reverseImageLayer release];
-	[reverseOverlayLayer release];
-	[bottomPageLayer release];
-	[bottomPageShadowLayer release];
+	[topPage release];
+	[topPageImage release];
+	[topPageShadow release];
+	[topPageReverse release];
+	[topPageReverseImage release];
+	[topPageReverseOverlay release];
+	[topPageReverseShading release];
+	[bottomPage release];
+	[bottomPageShadow release];
     [super dealloc];
+}
+
+#pragma mark properties
+
+- (void) setLeafEdge:(CGFloat)aLeafEdge {
+	leafEdge = aLeafEdge;
+	topPageShadow.opacity = MIN(1.0, 4*(1-leafEdge));
+	[self setNeedsLayout];
 }
 
 #pragma mark UIView methods
@@ -80,43 +101,43 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *touch = [event.allTouches anyObject];
 	CGPoint touchPoint = [touch locationInView:self];
-	leafEdge = touchPoint.x / self.bounds.size.width;
-	[self setNeedsLayout];
+	self.leafEdge = touchPoint.x / self.bounds.size.width;
 }
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	leafEdge = 1.0;
-	[self setNeedsLayout];
+	self.leafEdge = 1.0;
 }
 
 - (void) layoutSubviews {
 	[super layoutSubviews];
 	
-	topPageLayer.frame = CGRectMake(self.layer.bounds.origin.x, 
+	topPage.frame = CGRectMake(self.layer.bounds.origin.x, 
 									self.layer.bounds.origin.y, 
 									leafEdge * self.bounds.size.width, 
 									self.layer.bounds.size.height);
-	reverseLayer.frame = CGRectMake(self.layer.bounds.origin.x + (2*leafEdge-1) * self.bounds.size.width, 
+	topPageReverse.frame = CGRectMake(self.layer.bounds.origin.x + (2*leafEdge-1) * self.bounds.size.width, 
 										   self.layer.bounds.origin.y, 
 										   (1-leafEdge) * self.bounds.size.width, 
 										   self.layer.bounds.size.height);
-	bottomPageLayer.frame = self.layer.bounds;
+	bottomPage.frame = self.layer.bounds;
 	
-	topPageImageLayer.frame = topPageLayer.bounds;
-	topPageShadowLayer.frame = CGRectMake(reverseLayer.frame.origin.x - 40, 
-										  0, 
-										  40, 
-										  bottomPageLayer.bounds.size.height);
-	reverseImageLayer.frame = reverseLayer.bounds;
-	reverseImageLayer.transform = CATransform3DMakeScale(-1, 1, 1);
-	reverseOverlayLayer.frame = reverseLayer.bounds;
-	bottomPageShadowLayer.frame = CGRectMake(leafEdge * self.bounds.size.width, 
+	topPageImage.frame = topPage.bounds;
+	topPageShadow.frame = CGRectMake(topPageReverse.frame.origin.x - 40, 
+									 0, 
+									 40, 
+									 bottomPage.bounds.size.height);
+	topPageReverseImage.frame = topPageReverse.bounds;
+	topPageReverseImage.transform = CATransform3DMakeScale(-1, 1, 1);
+	topPageReverseOverlay.frame = topPageReverse.bounds;
+	topPageReverseShading.frame = CGRectMake(topPageReverse.bounds.size.width - 50, 
 											 0, 
-											 40, 
-											 bottomPageLayer.bounds.size.height);
-	
-	topPageShadowLayer.opacity = MIN(1.0, 4*(1-leafEdge));
+											 50 + 1, 
+											 topPageReverse.bounds.size.height);
+	bottomPageShadow.frame = CGRectMake(leafEdge * self.bounds.size.width, 
+										0, 
+										40, 
+										bottomPage.bounds.size.height);
 }
 
 @end
