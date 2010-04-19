@@ -21,6 +21,7 @@
 		D33D4A0D117C34F000BA7203 /* ImageExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4A0C117C34F000BA7203 /* ImageExampleViewController.m */; };
 		D33D4B4C117C46AD00BA7203 /* paper.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D33D4B4B117C46AD00BA7203 /* paper.pdf */; };
 		D33D4B51117C473500BA7203 /* PDFExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4B50117C473500BA7203 /* PDFExampleViewController.m */; };
+		D33D4B85117C4B8F00BA7203 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D33D4B4B117C46AD00BA7203 /* paper.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = paper.pdf; sourceTree = "<group>"; };
 		D33D4B4F117C473500BA7203 /* PDFExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFExampleViewController.h; sourceTree = "<group>"; };
 		D33D4B50117C473500BA7203 /* PDFExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFExampleViewController.m; sourceTree = "<group>"; };
+		D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				D33D4B83117C4B8B00BA7203 /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -130,6 +133,14 @@
 				D33D45A1117BDE0100BA7203 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D33D4B83117C4B8B00BA7203 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 				D33D46AC117BEDB300BA7203 /* kitten.png in Resources */,
 				D33D46B7117BEE4700BA7203 /* kitten2.png in Resources */,
 				D33D4B4C117C46AD00BA7203 /* paper.pdf in Resources */,
+				D33D4B85117C4B8F00BA7203 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +219,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -214,6 +227,8 @@
 				GCC_PREFIX_HEADER = Leaves_Prefix.pch;
 				INFOPLIST_FILE = "Leaves-Info.plist";
 				PRODUCT_NAME = Leaves;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -221,11 +236,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Leaves_Prefix.pch;
 				INFOPLIST_FILE = "Leaves-Info.plist";
 				PRODUCT_NAME = Leaves;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
