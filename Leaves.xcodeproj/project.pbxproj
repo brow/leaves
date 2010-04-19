@@ -16,7 +16,6 @@
 		28D7ACF80DDB3853001CB0EB /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* LeavesViewController.m */; };
 		D33D4593117BDCDC00BA7203 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4592117BDCDC00BA7203 /* LeavesView.m */; };
 		D33D45A2117BDE0100BA7203 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33D45A1117BDE0100BA7203 /* QuartzCore.framework */; };
-		D33D460D117BE1B700BA7203 /* LeafLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D460C117BE1B700BA7203 /* LeafLayer.m */; };
 		D33D46AC117BEDB300BA7203 /* kitten.png in Resources */ = {isa = PBXBuildFile; fileRef = D33D46AB117BEDB300BA7203 /* kitten.png */; };
 		D33D46B7117BEE4700BA7203 /* kitten2.png in Resources */ = {isa = PBXBuildFile; fileRef = D33D46B6117BEE4700BA7203 /* kitten2.png */; };
 /* End PBXBuildFile section */
@@ -37,8 +36,6 @@
 		D33D4591117BDCDC00BA7203 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
 		D33D4592117BDCDC00BA7203 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
 		D33D45A1117BDE0100BA7203 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D33D460B117BE1B700BA7203 /* LeafLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeafLayer.h; sourceTree = "<group>"; };
-		D33D460C117BE1B700BA7203 /* LeafLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeafLayer.m; sourceTree = "<group>"; };
 		D33D46AB117BEDB300BA7203 /* kitten.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitten.png; sourceTree = "<group>"; };
 		D33D46B6117BEE4700BA7203 /* kitten2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitten2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,8 +64,6 @@
 				28D7ACF70DDB3853001CB0EB /* LeavesViewController.m */,
 				D33D4591117BDCDC00BA7203 /* LeavesView.h */,
 				D33D4592117BDCDC00BA7203 /* LeavesView.m */,
-				D33D460B117BE1B700BA7203 /* LeafLayer.h */,
-				D33D460C117BE1B700BA7203 /* LeafLayer.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -183,7 +178,6 @@
 				1D3623260D0F684500981E51 /* LeavesAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* LeavesViewController.m in Sources */,
 				D33D4593117BDCDC00BA7203 /* LeavesView.m in Sources */,
-				D33D460D117BE1B700BA7203 /* LeafLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

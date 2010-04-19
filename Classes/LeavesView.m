@@ -121,7 +121,6 @@
 										   (1-leafEdge) * self.bounds.size.width, 
 										   self.layer.bounds.size.height);
 	bottomPage.frame = self.layer.bounds;
-	
 	topPageImage.frame = topPage.bounds;
 	topPageShadow.frame = CGRectMake(topPageReverse.frame.origin.x - 40, 
 									 0, 
