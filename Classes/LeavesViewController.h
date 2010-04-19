@@ -3,7 +3,7 @@
 //  Leaves
 //
 //  Created by Tom Brow on 4/18/10.
-//  Copyright __MyCompanyName__ 2010. All rights reserved.
+//  Copyright Tom Brow 2010. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
