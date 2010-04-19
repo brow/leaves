@@ -10,7 +10,17 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface LeavesView : UIView {
-	CALayer *topPageLayer, *topPageReverseLayer, *bottomPageLayer;
+	CALayer *topPageLayer;
+	CALayer *topPageImageLayer;
+	CAGradientLayer *topPageShadowLayer;
+	
+	CALayer *reverseLayer;
+	CALayer *reverseImageLayer;
+	CALayer *reverseOverlayLayer;
+	
+	CALayer *bottomPageLayer;
+	CAGradientLayer *bottomPageShadowLayer;
+	
 	CGFloat leafEdge;
 }
 
