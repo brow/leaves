@@ -8,13 +8,14 @@
 
 #import "LeavesAppDelegate.h"
 #import "LeavesViewController.h"
+#import "ExampleViewController.h"
 
 @implementation LeavesAppDelegate
 
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    	
-	viewController = [[LeavesViewController alloc] init];
+	viewController = [[ExampleViewController alloc] init];
     
 	[window addSubview:viewController.view];
     [window makeKeyAndVisible];

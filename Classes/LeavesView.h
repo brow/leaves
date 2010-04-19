@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+@protocol LeavesViewDataSource;
+@protocol LeavesViewDelegate;
+
 @interface LeavesView : UIView {
 	CALayer *topPage;
 	CALayer *topPageImage;
@@ -23,8 +26,32 @@
 	CAGradientLayer *bottomPageShadow;
 	
 	CGFloat leafEdge;
+	NSUInteger currentPageIndex;
+	NSUInteger numberOfPages;
+	id<LeavesViewDataSource> dataSource;
+	id<LeavesViewDelegate> delegate;
 }
 
-@property (assign) CGFloat leafEdge;
+@property (assign) id<LeavesViewDataSource> dataSource;
+@property (assign) id<LeavesViewDelegate> delegate;
+
+- (void) reloadData;
 
 @end
+
+
+@protocol LeavesViewDataSource
+
+- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView;
+- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx;
+
+@end
+
+@protocol LeavesViewDelegate
+
+@optional
+
+- (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSUInteger)pageIndex;
+
+@end
+

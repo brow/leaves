@@ -8,18 +8,28 @@
 
 #import "LeavesView.h"
 
+
+@interface LeavesView () 
+
+@property (assign) CGFloat leafEdge;
+@property (assign) NSUInteger currentPageIndex;
+
+@end
+
+
 @implementation LeavesView
 
-@synthesize leafEdge;
+@synthesize dataSource, delegate;
+@synthesize leafEdge, currentPageIndex;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		topPage = [[CALayer alloc] init];
+		topPage.backgroundColor = [[UIColor whiteColor] CGColor];
 		
 		topPageImage = [[CALayer alloc] init];
 		topPageImage.masksToBounds = YES;
 		topPageImage.contentsGravity = kCAGravityLeft;
-		topPageImage.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
 		
 		topPageShadow = [[CAGradientLayer alloc] init];
 		topPageShadow.colors = [NSArray arrayWithObjects:
@@ -30,12 +40,12 @@
 		topPageShadow.endPoint = CGPointMake(0,0.5);
 		
 		topPageReverse = [[CALayer alloc] init];
+		topPageReverse.backgroundColor = [[UIColor whiteColor] CGColor];
 		topPageReverse.masksToBounds = YES;
 		
 		topPageReverseImage = [[CALayer alloc] init];
 		topPageReverseImage.masksToBounds = YES;
 		topPageReverseImage.contentsGravity = kCAGravityRight;
-		topPageReverseImage.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
 		
 		topPageReverseOverlay = [[CALayer alloc] init];
 		topPageReverseOverlay.backgroundColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
@@ -49,8 +59,8 @@
 		topPageReverseShading.endPoint = CGPointMake(0,0.5);
 		
 		bottomPage = [[CALayer alloc] init];
+		bottomPage.backgroundColor = [[UIColor whiteColor] CGColor];
 		bottomPage.masksToBounds = YES;
-		bottomPage.contents = (id)[[UIImage imageNamed:@"kitten2.png"] CGImage];
 		
 		bottomPageShadow = [[CAGradientLayer alloc] init];
 		bottomPageShadow.colors = [NSArray arrayWithObjects:
@@ -88,12 +98,54 @@
     [super dealloc];
 }
 
+- (CGImageRef) imageForPageIndex:(NSUInteger)pageIndex {
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextRef context = CGBitmapContextCreate(NULL, 
+												 self.bounds.size.width, 
+												 self.bounds.size.height, 
+												 8,									/* bits per component*/
+												 (int)self.bounds.size.width * 4, 	/* bytes per row */
+												 colorSpace, 
+												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+	CGColorSpaceRelease(colorSpace);
+	CGContextClipToRect(context, self.bounds);
+	
+	[dataSource renderPageAtIndex:pageIndex inContext:context];
+	
+	CGImageRef image = CGBitmapContextCreateImage(context);
+	CGContextRelease(context);
+	
+	[UIImage imageWithCGImage:image];
+	CGImageRelease(image);
+	
+	return image;
+}
+
+- (void) reloadData {
+	numberOfPages = [dataSource numberOfPagesInLeavesView:self];
+	self.currentPageIndex = 0;
+}
+
 #pragma mark properties
 
 - (void) setLeafEdge:(CGFloat)aLeafEdge {
 	leafEdge = aLeafEdge;
 	topPageShadow.opacity = MIN(1.0, 4*(1-leafEdge));
 	[self setNeedsLayout];
+}
+
+- (void) setCurrentPageIndex:(NSUInteger)aCurrentPageIndex {
+	currentPageIndex = aCurrentPageIndex;
+	if (currentPageIndex < numberOfPages) {
+		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		if (currentPageIndex < numberOfPages - 1)
+			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
+	} else {
+		topPageImage.contents = nil;
+		topPageReverseImage.contents = nil;
+		bottomPage.contents = nil;
+	}
 }
 
 #pragma mark UIView methods
