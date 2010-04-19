@@ -8,7 +8,6 @@
 
 #import "LeavesView.h"
 
-
 @interface LeavesView () 
 
 @property (assign) CGFloat leafEdge;
@@ -126,52 +125,15 @@
 	self.currentPageIndex = 0;
 }
 
-#pragma mark properties
-
-- (void) setLeafEdge:(CGFloat)aLeafEdge {
-	leafEdge = aLeafEdge;
-	topPageShadow.opacity = MIN(1.0, 4*(1-leafEdge));
-	[self setNeedsLayout];
-}
-
-- (void) setCurrentPageIndex:(NSUInteger)aCurrentPageIndex {
-	currentPageIndex = aCurrentPageIndex;
-	if (currentPageIndex < numberOfPages) {
-		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
-		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
-		if (currentPageIndex < numberOfPages - 1)
-			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
-	} else {
-		topPageImage.contents = nil;
-		topPageReverseImage.contents = nil;
-		bottomPage.contents = nil;
-	}
-}
-
-#pragma mark UIView methods
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	UITouch *touch = [event.allTouches anyObject];
-	CGPoint touchPoint = [touch locationInView:self];
-	self.leafEdge = touchPoint.x / self.bounds.size.width;
-}
-
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	self.leafEdge = 1.0;
-}
-
-- (void) layoutSubviews {
-	[super layoutSubviews];
-	
+- (void) setLayerFrames {
 	topPage.frame = CGRectMake(self.layer.bounds.origin.x, 
-									self.layer.bounds.origin.y, 
-									leafEdge * self.bounds.size.width, 
-									self.layer.bounds.size.height);
+							   self.layer.bounds.origin.y, 
+							   leafEdge * self.bounds.size.width, 
+							   self.layer.bounds.size.height);
 	topPageReverse.frame = CGRectMake(self.layer.bounds.origin.x + (2*leafEdge-1) * self.bounds.size.width, 
-										   self.layer.bounds.origin.y, 
-										   (1-leafEdge) * self.bounds.size.width, 
-										   self.layer.bounds.size.height);
+									  self.layer.bounds.origin.y, 
+									  (1-leafEdge) * self.bounds.size.width, 
+									  self.layer.bounds.size.height);
 	bottomPage.frame = self.layer.bounds;
 	topPageImage.frame = topPage.bounds;
 	topPageShadow.frame = CGRectMake(topPageReverse.frame.origin.x - 40, 
@@ -189,6 +151,76 @@
 										0, 
 										40, 
 										bottomPage.bounds.size.height);
+}
+
+#pragma mark properties
+
+- (void) setLeafEdge:(CGFloat)aLeafEdge {
+	leafEdge = aLeafEdge;
+	topPageShadow.opacity = MIN(1.0, 4*(1-leafEdge));
+	bottomPageShadow.opacity = MIN(1.0, 4*leafEdge);
+	[self setLayerFrames];
+}
+
+- (void) setCurrentPageIndex:(NSUInteger)aCurrentPageIndex {
+	currentPageIndex = aCurrentPageIndex;
+	if (currentPageIndex < numberOfPages) {
+		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		if (currentPageIndex < numberOfPages - 1)
+			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
+	} else {
+		topPageImage.contents = nil;
+		topPageReverseImage.contents = nil;
+		bottomPage.contents = nil;
+	}
+	
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue
+					 forKey:kCATransactionDisableActions];
+	self.leafEdge = 1.0;
+	[CATransaction commit];
+}
+
+#pragma mark UIView methods
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [event.allTouches anyObject];
+	CGPoint touchPoint = [touch locationInView:self];
+	
+	[CATransaction begin];
+//	[CATransaction setValue:(id)kCFBooleanTrue
+//					 forKey:kCATransactionDisableActions];
+	[CATransaction setValue:[NSNumber numberWithFloat:0.07]
+					 forKey:kCATransactionAnimationDuration];
+	self.leafEdge = touchPoint.x / self.bounds.size.width;
+	[CATransaction commit];
+}
+
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	[CATransaction begin];
+	if (self.leafEdge < 0.5) {
+		self.leafEdge = 0;
+		[CATransaction setValue:[NSNumber numberWithFloat:leafEdge]
+						 forKey:kCATransactionAnimationDuration];
+	}
+	else {
+		self.leafEdge = 1.0;
+		[CATransaction setValue:[NSNumber numberWithFloat:1-leafEdge]
+						 forKey:kCATransactionAnimationDuration];
+	}
+	[CATransaction commit];
+}
+
+- (void) layoutSubviews {
+	[super layoutSubviews];
+	
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue
+					 forKey:kCATransactionDisableActions];
+	[self setLayerFrames];
+	[CATransaction commit];
 }
 
 @end
