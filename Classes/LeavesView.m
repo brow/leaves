@@ -22,6 +22,14 @@
 		topPageImageLayer.contentsGravity = kCAGravityLeft;
 		topPageImageLayer.contents = (id)[[UIImage imageNamed:@"kitten.png"] CGImage];
 		
+		topPageShadowLayer = [[CAGradientLayer alloc] init];
+		topPageShadowLayer.colors = [NSArray arrayWithObjects:
+										(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+										(id)[[UIColor clearColor] CGColor],
+										nil];
+		topPageShadowLayer.startPoint = CGPointMake(1,0.5);
+		topPageShadowLayer.endPoint = CGPointMake(0,0.5);
+		
 		reverseLayer = [[CALayer alloc] init];
 		
 		reverseImageLayer = [[CALayer alloc] init];
@@ -37,14 +45,14 @@
 		
 		bottomPageShadowLayer = [[CAGradientLayer alloc] init];
 		bottomPageShadowLayer.colors = [NSArray arrayWithObjects:
-										(id)[[UIColor blackColor] CGColor],
+										(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
 										(id)[[UIColor clearColor] CGColor],
 										nil];
 		bottomPageShadowLayer.startPoint = CGPointMake(0,0.5);
 		bottomPageShadowLayer.endPoint = CGPointMake(1,0.5);
-		bottomPageShadowLayer.opacity = 0.6;
 		
 		[topPageLayer addSublayer:topPageImageLayer];
+		[topPageLayer addSublayer:topPageShadowLayer];
 		[reverseLayer addSublayer:reverseImageLayer];
 		[reverseLayer addSublayer:reverseOverlayLayer];
 		[bottomPageLayer addSublayer:bottomPageShadowLayer];
@@ -96,6 +104,10 @@
 	bottomPageLayer.frame = self.layer.bounds;
 	
 	topPageImageLayer.frame = topPageLayer.bounds;
+	topPageShadowLayer.frame = CGRectMake(reverseLayer.frame.origin.x - 40, 
+										  0, 
+										  40, 
+										  bottomPageLayer.bounds.size.height);
 	reverseImageLayer.frame = reverseLayer.bounds;
 	reverseImageLayer.transform = CATransform3DMakeScale(-1, 1, 1);
 	reverseOverlayLayer.frame = reverseLayer.bounds;
@@ -103,6 +115,8 @@
 											 0, 
 											 40, 
 											 bottomPageLayer.bounds.size.height);
+	
+	topPageShadowLayer.opacity = MIN(1.0, 4*(1-leafEdge));
 }
 
 @end
