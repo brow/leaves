@@ -17,14 +17,13 @@
 		D33D4B85117C4B8F00BA7203 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */; };
 		D33D4E5B117D818100BA7203 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4E58117D818100BA7203 /* LeavesView.m */; };
 		D33D4E5C117D818100BA7203 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4E5A117D818100BA7203 /* LeavesViewController.m */; };
-		D33D4ECB117D8D4500BA7203 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4EC1117D8D4500BA7203 /* main.m */; };
 		D33D4ECC117D8D4500BA7203 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4EC3117D8D4500BA7203 /* Utilities.m */; };
 		D33D4ECD117D8D4500BA7203 /* kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D33D4EC5117D8D4500BA7203 /* kitten.jpg */; };
 		D33D4ECE117D8D4500BA7203 /* kitten2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D33D4EC6117D8D4500BA7203 /* kitten2.jpg */; };
 		D33D4ECF117D8D4500BA7203 /* kitten3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D33D4EC7117D8D4500BA7203 /* kitten3.jpg */; };
-		D33D4ED0117D8D4500BA7203 /* Leaves-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D33D4EC8117D8D4500BA7203 /* Leaves-Info.plist */; };
 		D33D4ED1117D8D4500BA7203 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33D4EC9117D8D4500BA7203 /* MainWindow.xib */; };
 		D33D4ED2117D8D4500BA7203 /* paper.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D33D4ECA117D8D4500BA7203 /* paper.pdf */; };
+		D33D4F01117D8EAE00BA7203 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4F00117D8EAE00BA7203 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,16 +43,16 @@
 		D33D4E58117D818100BA7203 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
 		D33D4E59117D818100BA7203 /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
 		D33D4E5A117D818100BA7203 /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
-		D33D4EC0117D8D4500BA7203 /* Leaves_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaves_Prefix.pch; sourceTree = "<group>"; };
-		D33D4EC1117D8D4500BA7203 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D33D4EC2117D8D4500BA7203 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		D33D4EC3117D8D4500BA7203 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		D33D4EC5117D8D4500BA7203 /* kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten.jpg; sourceTree = "<group>"; };
 		D33D4EC6117D8D4500BA7203 /* kitten2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten2.jpg; sourceTree = "<group>"; };
 		D33D4EC7117D8D4500BA7203 /* kitten3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten3.jpg; sourceTree = "<group>"; };
-		D33D4EC8117D8D4500BA7203 /* Leaves-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Leaves-Info.plist"; sourceTree = "<group>"; };
 		D33D4EC9117D8D4500BA7203 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		D33D4ECA117D8D4500BA7203 /* paper.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = paper.pdf; sourceTree = "<group>"; };
+		D33D4EDA117D8DCD00BA7203 /* Leaves-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Leaves-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D33D4EFB117D8E7800BA7203 /* Leaves_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaves_Prefix.pch; sourceTree = SOURCE_ROOT; };
+		D33D4F00117D8EAE00BA7203 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +138,8 @@
 		D33D4EBF117D8D4500BA7203 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D33D4EC0117D8D4500BA7203 /* Leaves_Prefix.pch */,
-				D33D4EC1117D8D4500BA7203 /* main.m */,
+				D33D4F00117D8EAE00BA7203 /* main.m */,
+				D33D4EFB117D8E7800BA7203 /* Leaves_Prefix.pch */,
 				D33D4EC2117D8D4500BA7203 /* Utilities.h */,
 				D33D4EC3117D8D4500BA7203 /* Utilities.m */,
 			);
@@ -150,11 +149,11 @@
 		D33D4EC4117D8D4500BA7203 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D33D4EDA117D8DCD00BA7203 /* Leaves-Info.plist */,
+				D33D4EC9117D8D4500BA7203 /* MainWindow.xib */,
 				D33D4EC5117D8D4500BA7203 /* kitten.jpg */,
 				D33D4EC6117D8D4500BA7203 /* kitten2.jpg */,
 				D33D4EC7117D8D4500BA7203 /* kitten3.jpg */,
-				D33D4EC8117D8D4500BA7203 /* Leaves-Info.plist */,
-				D33D4EC9117D8D4500BA7203 /* MainWindow.xib */,
 				D33D4ECA117D8D4500BA7203 /* paper.pdf */,
 			);
 			path = Resources;
@@ -209,7 +208,6 @@
 				D33D4ECD117D8D4500BA7203 /* kitten.jpg in Resources */,
 				D33D4ECE117D8D4500BA7203 /* kitten2.jpg in Resources */,
 				D33D4ECF117D8D4500BA7203 /* kitten3.jpg in Resources */,
-				D33D4ED0117D8D4500BA7203 /* Leaves-Info.plist in Resources */,
 				D33D4ED1117D8D4500BA7203 /* MainWindow.xib in Resources */,
 				D33D4ED2117D8D4500BA7203 /* paper.pdf in Resources */,
 			);
@@ -227,8 +225,8 @@
 				D33D4B51117C473500BA7203 /* PDFExampleViewController.m in Sources */,
 				D33D4E5B117D818100BA7203 /* LeavesView.m in Sources */,
 				D33D4E5C117D818100BA7203 /* LeavesViewController.m in Sources */,
-				D33D4ECB117D8D4500BA7203 /* main.m in Sources */,
 				D33D4ECC117D8D4500BA7203 /* Utilities.m in Sources */,
+				D33D4F01117D8EAE00BA7203 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
