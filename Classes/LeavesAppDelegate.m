@@ -16,7 +16,7 @@
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    	
-	viewController = [[PDFExampleViewController alloc] init];
+	viewController = [[ImageExampleViewController alloc] init];
     
 	[window addSubview:viewController.view];
     [window makeKeyAndVisible];

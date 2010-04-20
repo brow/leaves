@@ -7,15 +7,16 @@
 //
 
 #import "ImageExampleViewController.h"
-
+#import "Utilities.h"
 
 @implementation ImageExampleViewController
 
 - (id)init {
     if (self = [super init]) {
 		images = [[NSArray alloc] initWithObjects:
-				  [UIImage imageNamed:@"kitten.png"],
-				  [UIImage imageNamed:@"kitten2.png"],
+				  [UIImage imageNamed:@"kitten.jpg"],
+				  [UIImage imageNamed:@"kitten2.jpg"],
+				  [UIImage imageNamed:@"kitten3.jpg"],
 				  nil];
     }
     return self;
@@ -34,9 +35,11 @@
 
 - (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
 	UIImage *image = [images objectAtIndex:index];
-	CGContextDrawImage(ctx,
-					   CGContextGetClipBoundingBox(ctx), 
-					   [image CGImage]);
+	CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
+	CGAffineTransform transform = aspectFit(imageRect,
+											CGContextGetClipBoundingBox(ctx));
+	CGContextConcatCTM(ctx, transform);
+	CGContextDrawImage(ctx, imageRect, [image CGImage]);
 }
 
 #pragma mark UIViewController methods
