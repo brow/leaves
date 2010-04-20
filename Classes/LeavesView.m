@@ -153,6 +153,10 @@
 										bottomPage.bounds.size.height);
 }
 
+- (void) nextPage {
+	self.currentPageIndex = self.currentPageIndex + 1;
+}
+
 #pragma mark properties
 
 - (void) setLeafEdge:(CGFloat)aLeafEdge {
@@ -164,6 +168,11 @@
 
 - (void) setCurrentPageIndex:(NSUInteger)aCurrentPageIndex {
 	currentPageIndex = aCurrentPageIndex;
+	
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue
+					 forKey:kCATransactionDisableActions];
+	
 	if (currentPageIndex < numberOfPages) {
 		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
 		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
@@ -175,10 +184,8 @@
 		bottomPage.contents = nil;
 	}
 	
-	[CATransaction begin];
-	[CATransaction setValue:(id)kCFBooleanTrue
-					 forKey:kCATransactionDisableActions];
 	self.leafEdge = 1.0;
+	
 	[CATransaction commit];
 }
 
@@ -189,8 +196,6 @@
 	CGPoint touchPoint = [touch locationInView:self];
 	
 	[CATransaction begin];
-//	[CATransaction setValue:(id)kCFBooleanTrue
-//					 forKey:kCATransactionDisableActions];
 	[CATransaction setValue:[NSNumber numberWithFloat:0.07]
 					 forKey:kCATransactionAnimationDuration];
 	self.leafEdge = touchPoint.x / self.bounds.size.width;
@@ -200,16 +205,21 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	[CATransaction begin];
+	float duration;
 	if (self.leafEdge < 0.5) {
 		self.leafEdge = 0;
-		[CATransaction setValue:[NSNumber numberWithFloat:leafEdge]
-						 forKey:kCATransactionAnimationDuration];
+		duration = leafEdge;
+		[self performSelector:@selector(nextPage)
+				   withObject:nil 
+				   afterDelay:duration+0.2];
 	}
 	else {
 		self.leafEdge = 1.0;
-		[CATransaction setValue:[NSNumber numberWithFloat:1-leafEdge]
-						 forKey:kCATransactionAnimationDuration];
+		duration = 1 - leafEdge;
+		
 	}
+	[CATransaction setValue:[NSNumber numberWithFloat:duration]
+					 forKey:kCATransactionAnimationDuration];
 	[CATransaction commit];
 }
 
