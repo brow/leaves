@@ -283,23 +283,28 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void) layoutSubviews {
 	[super layoutSubviews];
 	
-	[CATransaction begin];
-	[CATransaction setValue:(id)kCFBooleanTrue
-					 forKey:kCATransactionDisableActions];
-	[self setLayerFrames];
-	[CATransaction commit];
 	
-	[self reloadImages];
-	
-	CGFloat touchRectsWidth = self.bounds.size.width / 7;
-	nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
-							  0,
-							  touchRectsWidth,
-							  self.bounds.size.height);
-	prevPageRect = CGRectMake(0,
-							  0,
-							  touchRectsWidth,
-							  self.bounds.size.height);
+	if (!CGSizeEqualToSize(pageSize, self.bounds.size)) {
+		pageSize = self.bounds.size;
+		
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue
+						 forKey:kCATransactionDisableActions];
+		[self setLayerFrames];
+		[CATransaction commit];
+		
+		[self reloadImages];
+		
+		CGFloat touchRectsWidth = self.bounds.size.width / 7;
+		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
+								  0,
+								  touchRectsWidth,
+								  self.bounds.size.height);
+		prevPageRect = CGRectMake(0,
+								  0,
+								  touchRectsWidth,
+								  self.bounds.size.height);
+	}
 }
 
 @end

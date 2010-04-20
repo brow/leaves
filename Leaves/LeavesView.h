@@ -31,6 +31,7 @@
 	id<LeavesViewDataSource> dataSource;
 	id<LeavesViewDelegate> delegate;
 	
+	CGSize pageSize;
 	CGPoint touchBeganPoint;
 	BOOL touchIsActive;
 	CGRect nextPageRect, prevPageRect;
