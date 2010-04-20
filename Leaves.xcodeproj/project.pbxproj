@@ -13,8 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		28D7ACF80DDB3853001CB0EB /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* LeavesViewController.m */; };
-		D33D4593117BDCDC00BA7203 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4592117BDCDC00BA7203 /* LeavesView.m */; };
 		D33D45A2117BDE0100BA7203 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33D45A1117BDE0100BA7203 /* QuartzCore.framework */; };
 		D33D46AC117BEDB300BA7203 /* kitten.png in Resources */ = {isa = PBXBuildFile; fileRef = D33D46AB117BEDB300BA7203 /* kitten.png */; };
 		D33D46B7117BEE4700BA7203 /* kitten2.png in Resources */ = {isa = PBXBuildFile; fileRef = D33D46B6117BEE4700BA7203 /* kitten2.png */; };
@@ -22,6 +20,8 @@
 		D33D4B4C117C46AD00BA7203 /* paper.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D33D4B4B117C46AD00BA7203 /* paper.pdf */; };
 		D33D4B51117C473500BA7203 /* PDFExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4B50117C473500BA7203 /* PDFExampleViewController.m */; };
 		D33D4B85117C4B8F00BA7203 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */; };
+		D33D4E5B117D818100BA7203 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4E58117D818100BA7203 /* LeavesView.m */; };
+		D33D4E5C117D818100BA7203 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4E5A117D818100BA7203 /* LeavesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,13 +32,9 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28D7ACF60DDB3853001CB0EB /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
-		28D7ACF70DDB3853001CB0EB /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Leaves_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaves_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Leaves-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Leaves-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		D33D4591117BDCDC00BA7203 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
-		D33D4592117BDCDC00BA7203 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
 		D33D45A1117BDE0100BA7203 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D33D46AB117BEDB300BA7203 /* kitten.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitten.png; sourceTree = "<group>"; };
 		D33D46B6117BEE4700BA7203 /* kitten2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitten2.png; sourceTree = "<group>"; };
@@ -48,6 +44,10 @@
 		D33D4B4F117C473500BA7203 /* PDFExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFExampleViewController.h; sourceTree = "<group>"; };
 		D33D4B50117C473500BA7203 /* PDFExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFExampleViewController.m; sourceTree = "<group>"; };
 		D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		D33D4E57117D818100BA7203 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
+		D33D4E58117D818100BA7203 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
+		D33D4E59117D818100BA7203 /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
+		D33D4E5A117D818100BA7203 /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +70,6 @@
 			children = (
 				1D3623240D0F684500981E51 /* LeavesAppDelegate.h */,
 				1D3623250D0F684500981E51 /* LeavesAppDelegate.m */,
-				28D7ACF60DDB3853001CB0EB /* LeavesViewController.h */,
-				28D7ACF70DDB3853001CB0EB /* LeavesViewController.m */,
-				D33D4591117BDCDC00BA7203 /* LeavesView.h */,
-				D33D4592117BDCDC00BA7203 /* LeavesView.m */,
 				D33D4A0B117C34F000BA7203 /* ImageExampleViewController.h */,
 				D33D4A0C117C34F000BA7203 /* ImageExampleViewController.m */,
 				D33D4B4F117C473500BA7203 /* PDFExampleViewController.h */,
@@ -93,6 +89,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D33D4E56117D818100BA7203 /* Leaves */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -141,6 +138,17 @@
 				D33D4B84117C4B8F00BA7203 /* MainWindow-iPad.xib */,
 			);
 			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		D33D4E56117D818100BA7203 /* Leaves */ = {
+			isa = PBXGroup;
+			children = (
+				D33D4E57117D818100BA7203 /* LeavesView.h */,
+				D33D4E58117D818100BA7203 /* LeavesView.m */,
+				D33D4E59117D818100BA7203 /* LeavesViewController.h */,
+				D33D4E5A117D818100BA7203 /* LeavesViewController.m */,
+			);
+			path = Leaves;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,10 +213,10 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* LeavesAppDelegate.m in Sources */,
-				28D7ACF80DDB3853001CB0EB /* LeavesViewController.m in Sources */,
-				D33D4593117BDCDC00BA7203 /* LeavesView.m in Sources */,
 				D33D4A0D117C34F000BA7203 /* ImageExampleViewController.m in Sources */,
 				D33D4B51117C473500BA7203 /* PDFExampleViewController.m in Sources */,
+				D33D4E5B117D818100BA7203 /* LeavesView.m in Sources */,
+				D33D4E5C117D818100BA7203 /* LeavesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
