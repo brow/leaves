@@ -7,16 +7,15 @@
 //
 
 #import "LeavesAppDelegate.h"
-#import "LeavesViewController.h"
-#import "ImageExampleViewController.h"
-#import "PDFExampleViewController.h"
+#import "ExamplesViewController.h"
 
 @implementation LeavesAppDelegate
 
 @synthesize window;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    	
-	viewController = [[ImageExampleViewController alloc] init];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	UIViewController *rootViewController = [[[ExamplesViewController alloc] init] autorelease];
+	viewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
 	[window addSubview:viewController.view];
     [window makeKeyAndVisible];

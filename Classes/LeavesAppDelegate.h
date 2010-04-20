@@ -12,7 +12,7 @@
 
 @interface LeavesAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    LeavesViewController *viewController;
+    UIViewController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
