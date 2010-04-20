@@ -10,7 +10,6 @@
 
 
 @interface ExamplesViewController : UITableViewController {
-	NSArray *exampleViewControllers;
 }
 
 @end
