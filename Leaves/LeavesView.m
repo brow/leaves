@@ -223,10 +223,10 @@ CGFloat distance(CGPoint a, CGPoint b);
 	touchBeganPoint = [touch locationInView:self];
 	
 	if ([self touchedPrevPage] && [self hasPrevPage]) {
-		self.currentPageIndex = self.currentPageIndex - 1;
 		[CATransaction begin];
 		[CATransaction setValue:(id)kCFBooleanTrue
 						 forKey:kCATransactionDisableActions];
+		self.currentPageIndex = self.currentPageIndex - 1;
 		self.leafEdge = 0.0;
 		[CATransaction commit];
 		touchIsActive = YES;
