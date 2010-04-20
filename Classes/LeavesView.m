@@ -8,6 +8,8 @@
 
 #import "LeavesView.h"
 
+#define DRAG_THRESHOLD 2.5
+
 @interface LeavesView () 
 
 @property (assign) CGFloat leafEdge;
@@ -15,6 +17,7 @@
 
 @end
 
+CGFloat distance(CGPoint a, CGPoint b);
 
 @implementation LeavesView
 
@@ -153,9 +156,30 @@
 										bottomPage.bounds.size.height);
 }
 
+- (void) prevPage {
+	self.currentPageIndex = self.currentPageIndex - 1;
+}
+
 - (void) nextPage {
 	self.currentPageIndex = self.currentPageIndex + 1;
 }
+
+- (BOOL) hasPrevPage {
+	return self.currentPageIndex > 0;
+}
+
+- (BOOL) hasNextPage {
+	return self.currentPageIndex < numberOfPages - 1;
+}
+
+- (BOOL) touchedNextPage {
+	return CGRectContainsPoint(nextPageRect, touchBeganPoint);
+}
+
+- (BOOL) touchedPrevPage {
+	return CGRectContainsPoint(prevPageRect, touchBeganPoint);
+}
+
 
 #pragma mark properties
 
@@ -191,7 +215,29 @@
 
 #pragma mark UIView methods
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [event.allTouches anyObject];
+	touchBeganPoint = [touch locationInView:self];
+	
+	if ([self touchedPrevPage] && [self hasPrevPage]) {
+		[self prevPage];
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue
+						 forKey:kCATransactionDisableActions];
+		self.leafEdge = 0.0;
+		[CATransaction commit];
+		touchIsActive = YES;
+	} 
+	else if ([self touchedNextPage] && [self hasNextPage])
+		touchIsActive = YES;
+		
+	else 
+		touchIsActive = NO;
+}
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	if (!touchIsActive)
+		return;
 	UITouch *touch = [event.allTouches anyObject];
 	CGPoint touchPoint = [touch locationInView:self];
 	
@@ -204,19 +250,24 @@
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	if (!touchIsActive)
+		return;
+	UITouch *touch = [event.allTouches anyObject];
+	CGPoint touchPoint = [touch locationInView:self];
+	BOOL dragged = distance(touchPoint, touchBeganPoint) > DRAG_THRESHOLD;
+
 	[CATransaction begin];
 	float duration;
-	if (self.leafEdge < 0.5) {
+	if ((dragged && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage])) {
 		self.leafEdge = 0;
 		duration = leafEdge;
 		[self performSelector:@selector(nextPage)
 				   withObject:nil 
-				   afterDelay:duration+0.2];
+				   afterDelay:duration + 0.2];
 	}
 	else {
 		self.leafEdge = 1.0;
 		duration = 1 - leafEdge;
-		
 	}
 	[CATransaction setValue:[NSNumber numberWithFloat:duration]
 					 forKey:kCATransactionAnimationDuration];
@@ -231,6 +282,21 @@
 					 forKey:kCATransactionDisableActions];
 	[self setLayerFrames];
 	[CATransaction commit];
+	
+	
+	CGFloat touchRectsWidth = self.bounds.size.width / 7;
+	nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
+							  0,
+							  touchRectsWidth,
+							  self.bounds.size.height);
+	prevPageRect = CGRectMake(0,
+							  0,
+							  touchRectsWidth,
+							  self.bounds.size.height);
 }
 
 @end
+
+CGFloat distance(CGPoint a, CGPoint b) {
+	return sqrtf(powf(a.x-b.x, 2) + powf(a.y-b.y, 2));
+}

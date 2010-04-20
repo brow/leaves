@@ -30,6 +30,10 @@
 	NSUInteger numberOfPages;
 	id<LeavesViewDataSource> dataSource;
 	id<LeavesViewDelegate> delegate;
+	
+	CGPoint touchBeganPoint;
+	BOOL touchIsActive;
+	CGRect nextPageRect, prevPageRect;
 }
 
 @property (assign) id<LeavesViewDataSource> dataSource;
