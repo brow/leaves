@@ -14,7 +14,6 @@
 
 @interface LeavesView : UIView {
 	CALayer *topPage;
-	CALayer *topPageImage;
 	CAGradientLayer *topPageShadow;
 	
 	CALayer *topPageReverse;

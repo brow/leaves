@@ -27,11 +27,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		topPage = [[CALayer alloc] init];
+		topPage.masksToBounds = YES;
+		topPage.contentsGravity = kCAGravityLeft;
 		topPage.backgroundColor = [[UIColor whiteColor] CGColor];
-		
-		topPageImage = [[CALayer alloc] init];
-		topPageImage.masksToBounds = YES;
-		topPageImage.contentsGravity = kCAGravityLeft;
 		
 		topPageShadow = [[CAGradientLayer alloc] init];
 		topPageShadow.colors = [NSArray arrayWithObjects:
@@ -72,7 +70,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 		bottomPageShadow.startPoint = CGPointMake(0,0.5);
 		bottomPageShadow.endPoint = CGPointMake(1,0.5);
 		
-		[topPage addSublayer:topPageImage];
 		[topPage addSublayer:topPageShadow];
 		[topPageReverse addSublayer:topPageReverseImage];
 		[topPageReverse addSublayer:topPageReverseOverlay];
@@ -89,7 +86,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void)dealloc {
 	[topPage release];
-	[topPageImage release];
 	[topPageShadow release];
 	[topPageReverse release];
 	[topPageReverseImage release];
@@ -130,12 +126,12 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) reloadImages {
 	if (currentPageIndex < numberOfPages) {
-		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		topPage.contents = (id)[self imageForPageIndex:currentPageIndex];
 		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
 		if (currentPageIndex < numberOfPages - 1)
 			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
 	} else {
-		topPageImage.contents = nil;
+		topPage.contents = nil;
 		topPageReverseImage.contents = nil;
 		bottomPage.contents = nil;
 	}
@@ -151,7 +147,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 									  (1-leafEdge) * self.bounds.size.width, 
 									  self.layer.bounds.size.height);
 	bottomPage.frame = self.layer.bounds;
-	topPageImage.frame = topPage.bounds;
 	topPageShadow.frame = CGRectMake(topPageReverse.frame.origin.x - 40, 
 									 0, 
 									 40, 
