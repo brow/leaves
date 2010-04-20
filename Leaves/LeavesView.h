@@ -35,6 +35,7 @@
 	CGPoint touchBeganPoint;
 	BOOL touchIsActive;
 	CGRect nextPageRect, prevPageRect;
+	BOOL interactionLocked;
 }
 
 @property (assign) id<LeavesViewDataSource> dataSource;

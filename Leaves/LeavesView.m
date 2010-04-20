@@ -170,9 +170,11 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (void) didTurnPageBackward {
+	interactionLocked = NO;
 }
 
 - (void) didTurnPageForward {
+	interactionLocked = NO;
 	self.currentPageIndex = self.currentPageIndex + 1;
 }
 
@@ -219,6 +221,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 #pragma mark UIView methods
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	if (interactionLocked)
+		return;
+	
 	UITouch *touch = [event.allTouches anyObject];
 	touchBeganPoint = [touch locationInView:self];
 	
@@ -255,6 +260,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	if (!touchIsActive)
 		return;
+	touchIsActive = NO;
+	
 	UITouch *touch = [event.allTouches anyObject];
 	CGPoint touchPoint = [touch locationInView:self];
 	BOOL dragged = distance(touchPoint, touchBeganPoint) > DRAG_THRESHOLD;
@@ -264,6 +271,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	if ((dragged && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage])) {
 		self.leafEdge = 0;
 		duration = leafEdge;
+		interactionLocked = YES;
 		[self performSelector:@selector(didTurnPageForward)
 				   withObject:nil 
 				   afterDelay:duration + 0.2];
@@ -271,6 +279,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	else {
 		self.leafEdge = 1.0;
 		duration = 1 - leafEdge;
+		interactionLocked = YES;
 		[self performSelector:@selector(didTurnPageBackward)
 				   withObject:nil 
 				   afterDelay:duration + 0.2];
