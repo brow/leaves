@@ -128,6 +128,19 @@ CGFloat distance(CGPoint a, CGPoint b);
 	self.currentPageIndex = 0;
 }
 
+- (void) reloadImages {
+	if (currentPageIndex < numberOfPages) {
+		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		if (currentPageIndex < numberOfPages - 1)
+			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
+	} else {
+		topPageImage.contents = nil;
+		topPageReverseImage.contents = nil;
+		bottomPage.contents = nil;
+	}
+}
+
 - (void) setLayerFrames {
 	topPage.frame = CGRectMake(self.layer.bounds.origin.x, 
 							   self.layer.bounds.origin.y, 
@@ -156,11 +169,10 @@ CGFloat distance(CGPoint a, CGPoint b);
 										bottomPage.bounds.size.height);
 }
 
-- (void) prevPage {
-	self.currentPageIndex = self.currentPageIndex - 1;
+- (void) didTurnPageBackward {
 }
 
-- (void) nextPage {
+- (void) didTurnPageForward {
 	self.currentPageIndex = self.currentPageIndex + 1;
 }
 
@@ -197,16 +209,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[CATransaction setValue:(id)kCFBooleanTrue
 					 forKey:kCATransactionDisableActions];
 	
-	if (currentPageIndex < numberOfPages) {
-		topPageImage.contents = (id)[self imageForPageIndex:currentPageIndex];
-		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
-		if (currentPageIndex < numberOfPages - 1)
-			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
-	} else {
-		topPageImage.contents = nil;
-		topPageReverseImage.contents = nil;
-		bottomPage.contents = nil;
-	}
+	[self reloadImages];
 	
 	self.leafEdge = 1.0;
 	
@@ -220,7 +223,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	touchBeganPoint = [touch locationInView:self];
 	
 	if ([self touchedPrevPage] && [self hasPrevPage]) {
-		[self prevPage];
+		self.currentPageIndex = self.currentPageIndex - 1;
 		[CATransaction begin];
 		[CATransaction setValue:(id)kCFBooleanTrue
 						 forKey:kCATransactionDisableActions];
@@ -261,13 +264,16 @@ CGFloat distance(CGPoint a, CGPoint b);
 	if ((dragged && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage])) {
 		self.leafEdge = 0;
 		duration = leafEdge;
-		[self performSelector:@selector(nextPage)
+		[self performSelector:@selector(didTurnPageForward)
 				   withObject:nil 
 				   afterDelay:duration + 0.2];
 	}
 	else {
 		self.leafEdge = 1.0;
 		duration = 1 - leafEdge;
+		[self performSelector:@selector(didTurnPageBackward)
+				   withObject:nil 
+				   afterDelay:duration + 0.2];
 	}
 	[CATransaction setValue:[NSNumber numberWithFloat:duration]
 					 forKey:kCATransactionAnimationDuration];
@@ -283,6 +289,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[self setLayerFrames];
 	[CATransaction commit];
 	
+	[self reloadImages];
 	
 	CGFloat touchRectsWidth = self.bounds.size.width / 7;
 	nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
