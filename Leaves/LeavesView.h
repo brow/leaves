@@ -46,14 +46,14 @@
 @end
 
 
-@protocol LeavesViewDataSource
+@protocol LeavesViewDataSource <NSObject>
 
 - (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView;
 - (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx;
 
 @end
 
-@protocol LeavesViewDelegate
+@protocol LeavesViewDelegate <NSObject>
 
 @optional
 

@@ -170,13 +170,20 @@ CGFloat distance(CGPoint a, CGPoint b);
 	topPageOverlay.frame = topPage.bounds;
 }
 
+- (void) didTurnToPageAtIndex:(NSUInteger)index {
+	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)])
+		[delegate leavesView:self didTurnToPageAtIndex:index];
+}
+
 - (void) didTurnPageBackward {
 	interactionLocked = NO;
+	[self didTurnToPageAtIndex:currentPageIndex];
 }
 
 - (void) didTurnPageForward {
 	interactionLocked = NO;
 	self.currentPageIndex = self.currentPageIndex + 1;
+	[self didTurnToPageAtIndex:currentPageIndex];
 }
 
 - (BOOL) hasPrevPage {

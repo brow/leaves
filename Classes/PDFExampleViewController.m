@@ -25,6 +25,19 @@
     [super dealloc];
 }
 
+- (void) displayPageNumber:(NSUInteger)pageNumber {
+	self.navigationItem.title = [NSString stringWithFormat:
+								 @"Page %u of %u", 
+								 pageNumber, 
+								 CGPDFDocumentGetNumberOfPages(pdf)];
+}
+
+#pragma mark  LeavesViewDelegate methods
+
+- (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSUInteger)pageIndex {
+	[self displayPageNumber:pageIndex + 1];
+}
+
 #pragma mark LeavesViewDataSource methods
 
 - (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
@@ -37,6 +50,13 @@
 											CGContextGetClipBoundingBox(ctx));
 	CGContextConcatCTM(ctx, transform);
 	CGContextDrawPDFPage(ctx, page);
+}
+
+#pragma mark UIViewController
+
+- (void) viewDidLoad {
+	[super viewDidLoad];
+	[self displayPageNumber:1];
 }
 
 @end
