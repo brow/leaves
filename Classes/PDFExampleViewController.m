@@ -39,12 +39,4 @@
 	CGContextDrawPDFPage(ctx, page);
 }
 
-#pragma mark UIViewController methods
-
-- (void) viewDidLoad {
-	[super viewDidLoad];
-	leavesView.dataSource = self;
-	leavesView.delegate = self;
-	[leavesView reloadData];
-}
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LeavesView.h"
 
-@interface LeavesViewController : UIViewController {
+@interface LeavesViewController : UIViewController <LeavesViewDataSource, LeavesViewDelegate> {
 	LeavesView *leavesView;
 }
 

@@ -9,8 +9,9 @@
 #import "ExamplesViewController.h"
 #import "PDFExampleViewController.h"
 #import "ImageExampleViewController.h"
+#import "ProceduralExampleViewController.h"
 
-enum {PDF, IMAGE, NUM_EXAMPLES};
+enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
 
 @implementation ExamplesViewController
 
@@ -49,6 +50,7 @@ enum {PDF, IMAGE, NUM_EXAMPLES};
 	switch (indexPath.row) {
 		case PDF: cell.textLabel.text = @"PDF example"; break;
 		case IMAGE: cell.textLabel.text = @"Image example"; break;
+		case PROCEDURAL: cell.textLabel.text = @"Procedural example"; break;
 		default: cell.textLabel.text = @"";
 	}    
     return cell;
@@ -64,6 +66,9 @@ enum {PDF, IMAGE, NUM_EXAMPLES};
 			break;
 		case IMAGE: 
 			viewController = [[[ImageExampleViewController alloc] init] autorelease]; 
+			break;
+		case PROCEDURAL:
+			viewController = [[[ProceduralExampleViewController alloc] init] autorelease]; 
 			break;
 		default: 
 			viewController = [[[UIViewController alloc] init] autorelease];

@@ -25,6 +25,7 @@
 		D33D4ED2117D8D4500BA7203 /* paper.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D33D4ECA117D8D4500BA7203 /* paper.pdf */; };
 		D33D4F01117D8EAE00BA7203 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4F00117D8EAE00BA7203 /* main.m */; };
 		D33D4F41117E244C00BA7203 /* ExamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4F40117E244C00BA7203 /* ExamplesViewController.m */; };
+		D33D5176117E780300BA7203 /* ProceduralExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D5175117E780300BA7203 /* ProceduralExampleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		D33D4F00117D8EAE00BA7203 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		D33D4F3F117E244C00BA7203 /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		D33D4F40117E244C00BA7203 /* ExamplesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesViewController.m; sourceTree = "<group>"; };
+		D33D5174117E780300BA7203 /* ProceduralExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProceduralExampleViewController.h; sourceTree = "<group>"; };
+		D33D5175117E780300BA7203 /* ProceduralExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProceduralExampleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 				D33D4B50117C473500BA7203 /* PDFExampleViewController.m */,
 				D33D4F3F117E244C00BA7203 /* ExamplesViewController.h */,
 				D33D4F40117E244C00BA7203 /* ExamplesViewController.m */,
+				D33D5174117E780300BA7203 /* ProceduralExampleViewController.h */,
+				D33D5175117E780300BA7203 /* ProceduralExampleViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				D33D4ECC117D8D4500BA7203 /* Utilities.m in Sources */,
 				D33D4F01117D8EAE00BA7203 /* main.m in Sources */,
 				D33D4F41117E244C00BA7203 /* ExamplesViewController.m in Sources */,
+				D33D5176117E780300BA7203 /* ProceduralExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

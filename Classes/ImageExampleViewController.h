@@ -8,7 +8,7 @@
 
 #import "LeavesViewController.h"
 
-@interface ImageExampleViewController : LeavesViewController <LeavesViewDataSource, LeavesViewDelegate> {
+@interface ImageExampleViewController : LeavesViewController {
 	NSArray *images;
 }
 

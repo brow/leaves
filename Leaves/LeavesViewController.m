@@ -22,6 +22,18 @@
     [super dealloc];
 }
 
+#pragma mark LeavesViewDataSource methods
+
+- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
+	return 0;
+}
+
+- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
+	
+}
+
+#pragma mark  UIViewController methods
+
 - (void)loadView {
 	[super loadView];
 	leavesView.frame = self.view.bounds;
@@ -29,12 +41,11 @@
 	[self.view addSubview:leavesView];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void) viewDidLoad {
+	[super viewDidLoad];
+	leavesView.dataSource = self;
+	leavesView.delegate = self;
+	[leavesView reloadData];
 }
-*/
 
 @end

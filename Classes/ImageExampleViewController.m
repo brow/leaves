@@ -42,13 +42,4 @@
 	CGContextDrawImage(ctx, imageRect, [image CGImage]);
 }
 
-#pragma mark UIViewController methods
-
-- (void) viewDidLoad {
-	[super viewDidLoad];
-	leavesView.dataSource = self;
-	leavesView.delegate = self;
-	[leavesView reloadData];
-}
-
 @end

@@ -8,7 +8,7 @@
 
 #import "LeavesViewController.h"
 
-@interface PDFExampleViewController : LeavesViewController <LeavesViewDataSource, LeavesViewDelegate> {
+@interface PDFExampleViewController : LeavesViewController {
 	CGPDFDocumentRef pdf;
 }
 
