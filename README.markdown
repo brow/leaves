@@ -18,6 +18,35 @@ Leaves does *not* currently support:
 
 Add the files in the `Leaves` directory to your XCode project.
 
+#Getting Started
+
+Creating a page-turning interface is as simple as subclassing `LeavesViewController`:
+
+	@interface ColorSwatchViewController : LeavesViewController
+	@end
+
+...and implementing the `LeavesViewDataSource` protocol:
+
+	@implementation ColorSwatchViewController
+
+	- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
+		return 10;
+	}
+
+	- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
+		CGContextSetFillColorWithColor(ctx, [[UIColor colorWithHue:index/10.0 
+														saturation:0.8
+														brightness:0.8 
+															 alpha:1.0] CGColor]);
+		CGContextFillRect(ctx, CGContextGetClipBoundingBox(ctx));
+	}
+
+	@end
+
+A ten-page book of color swatches.  Nice.
+
+@end
+
 #Notes
 
 Leaves is still in early development. Future revisions may break the existing API.  Pull requests are welcome.
