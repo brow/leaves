@@ -14,9 +14,11 @@ Leaves does *not* currently support:
 - Swipe gestures
 - Two-page landscape view
 
+Leaves requires iPhone OS 3.0 or later.
+
 #Installation
 
-Add the files in the `Leaves` directory to your XCode project.
+Add the files in the `Leaves` subdirectory to your Xcode project.
 
 #Getting Started
 
@@ -43,8 +45,4 @@ Creating a page-turning interface is as simple as subclassing `LeavesViewControl
 
 	@end
 
-A ten-page book of color swatches.  Nice.
-
-#Notes
-
-Leaves is still in early development. Future revisions may break the existing API.  Pull requests are welcome.
+Build the Xcode project included with Leaves to see some more sophisticated examples.
