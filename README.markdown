@@ -1,6 +1,6 @@
 #Leaves
 
-Leaves is an simple way to present a page-turning interface similar to Apple's iBooks.  It comprises two classes, `LeavesView` and `LeavesViewController`, and occupies only 100 kB compiled.  It uses only public APIs, sacrificing a portion of iBooks' visual flair to ensure that your application is safe for submission to the App Store.
+Leaves is an simple way to present a page-turning interface similar to Apple's iBooks.  It comprises two classes, `LeavesView` and `LeavesViewController`, and occupies less than 100 kB compiled.  It uses only public APIs, sacrificing a portion of iBooks' visual flair to ensure that your application is safe for submission to the App Store.
 
 Leaves supports:
 
