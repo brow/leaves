@@ -45,8 +45,6 @@ Creating a page-turning interface is as simple as subclassing `LeavesViewControl
 
 A ten-page book of color swatches.  Nice.
 
-@end
-
 #Notes
 
 Leaves is still in early development. Future revisions may break the existing API.  Pull requests are welcome.
