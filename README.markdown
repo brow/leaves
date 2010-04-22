@@ -18,7 +18,7 @@ Leaves requires iPhone OS 3.0 or later.
 
 #Installation
 
-Add the files in the `Leaves` subdirectory to your Xcode project.
+Add the files in the `Leaves` subdirectory to your Xcode project and ensure that you are linking against `QuartzCore.framework`.
 
 #Getting Started
 
