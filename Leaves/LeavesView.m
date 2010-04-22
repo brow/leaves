@@ -25,6 +25,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 @synthesize leafEdge, currentPageIndex;
 
 - (void) setUpLayers {
+	self.clipsToBounds = YES;
+	
 	topPage = [[CALayer alloc] init];
 	topPage.masksToBounds = YES;
 	topPage.contentsGravity = kCAGravityLeft;
@@ -256,7 +258,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	} 
 	else if ([self touchedNextPage] && [self hasNextPage])
 		touchIsActive = YES;
-		
+	
 	else 
 		touchIsActive = NO;
 }
@@ -283,7 +285,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	UITouch *touch = [event.allTouches anyObject];
 	CGPoint touchPoint = [touch locationInView:self];
 	BOOL dragged = distance(touchPoint, touchBeganPoint) > DRAG_THRESHOLD;
-
+	
 	[CATransaction begin];
 	float duration;
 	if ((dragged && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage])) {
