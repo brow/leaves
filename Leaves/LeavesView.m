@@ -8,8 +8,6 @@
 
 #import "LeavesView.h"
 
-#define DRAG_THRESHOLD 2.5
-
 @interface LeavesView () 
 
 @property (assign) CGFloat leafEdge;
@@ -213,6 +211,15 @@ CGFloat distance(CGPoint a, CGPoint b);
 	return CGRectContainsPoint(prevPageRect, touchBeganPoint);
 }
 
+- (CGFloat) dragThreshold {
+	// Magic empirical number
+	return 10;
+}
+
+- (CGFloat) targetWidth {
+	// Magic empirical formula
+	return MAX(28, self.bounds.size.width / 5);
+}
 
 #pragma mark properties
 
@@ -284,7 +291,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	UITouch *touch = [event.allTouches anyObject];
 	CGPoint touchPoint = [touch locationInView:self];
-	BOOL dragged = distance(touchPoint, touchBeganPoint) > DRAG_THRESHOLD;
+	NSLog(@"%.1f", distance(touchPoint, touchBeganPoint));
+	BOOL dragged = distance(touchPoint, touchBeganPoint) > [self dragThreshold];
 	
 	[CATransaction begin];
 	float duration;
