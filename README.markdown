@@ -1,6 +1,6 @@
 #Leaves
 
-Leaves is handful of classes that make it easy to present PDFs and images in a page-turning interface similar to Apple's iBooks.  Leaves uses only public APIs, sacrificing a portion of iBooks' visual flair to ensure that your application is safe for submission to the App Store.
+Leaves is an simple way to present a page-turning interface similar to Apple's iBooks.  It comprises two classes, `LeavesView` and `LeavesViewController`, and occupies less than 100 kB compiled.  It uses only public APIs, sacrificing a portion of iBooks' visual flair to ensure that your application is safe for submission to the App Store.
 
 Leaves supports:
 
@@ -14,9 +14,11 @@ Leaves does *not* currently support:
 - Swipe gestures
 - Two-page landscape view
 
+Leaves requires iPhone OS 3.0 or later.
+
 #Installation
 
-Add the files in the `Leaves` directory to your XCode project.
+Add the files in the `Leaves` subdirectory to your Xcode project and ensure that you are linking against `QuartzCore.framework`.
 
 #Getting Started
 
@@ -43,8 +45,4 @@ Creating a page-turning interface is as simple as subclassing `LeavesViewControl
 
 	@end
 
-A ten-page book of color swatches.  Nice.
-
-#Notes
-
-Leaves is still in early development. Future revisions may break the existing API.  Pull requests are welcome.
+For more sophisticated examples, build the Xcode project included with Leaves.
