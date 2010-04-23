@@ -291,7 +291,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	UITouch *touch = [event.allTouches anyObject];
 	CGPoint touchPoint = [touch locationInView:self];
-	NSLog(@"%.1f", distance(touchPoint, touchBeganPoint));
 	BOOL dragged = distance(touchPoint, touchBeganPoint) > [self dragThreshold];
 	
 	[CATransaction begin];
