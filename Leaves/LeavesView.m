@@ -85,9 +85,14 @@ CGFloat distance(CGPoint a, CGPoint b);
 	self.leafEdge = 1.0;
 }
 
+- (void) initialize {
+	pageCache = [[NSMutableDictionary alloc] init];
+}
+
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		[self setUpLayers];
+		[self initialize];
     }
     return self;
 }
@@ -95,6 +100,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void) awakeFromNib {
 	[super awakeFromNib];
 	[self setUpLayers];
+	[self initialize];
 }
 
 - (void)dealloc {
@@ -107,7 +113,16 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[topPageReverseShading release];
 	[bottomPage release];
 	[bottomPageShadow release];
+	
+	[pageCache release];
+	
     [super dealloc];
+}
+
+- (void) reloadData {
+	[pageCache removeAllObjects];
+	numberOfPages = [dataSource numberOfPagesInLeavesView:self];
+	self.currentPageIndex = 0;
 }
 
 - (CGImageRef) imageForPageIndex:(NSUInteger)pageIndex {
@@ -133,17 +148,31 @@ CGFloat distance(CGPoint a, CGPoint b);
 	return image;
 }
 
-- (void) reloadData {
-	numberOfPages = [dataSource numberOfPagesInLeavesView:self];
-	self.currentPageIndex = 0;
+- (CGImageRef) cachedImageForPageIndex:(NSUInteger)pageIndex {
+	NSNumber *pageIndexNumber = [NSNumber numberWithInt:pageIndex];
+	UIImage *pageImage = [pageCache objectForKey:pageIndexNumber];
+	if (!pageImage) {
+		CGImageRef pageCGImage = [self imageForPageIndex:pageIndex];
+		pageImage = [UIImage imageWithCGImage:pageCGImage];
+		[pageCache setObject:pageImage forKey:pageIndexNumber];
+	}
+	return pageImage.CGImage;
 }
 
-- (void) reloadImages {
+- (void) cleanCache {
+	/* Uncache all pages except previous, current, and next. */
+	for (NSNumber *key in [pageCache allKeys])
+		if (ABS([key intValue] - (int)currentPageIndex) > 1)
+			[pageCache removeObjectForKey:key];
+}
+
+- (void) getImages {
 	if (currentPageIndex < numberOfPages) {
-		topPage.contents = (id)[self imageForPageIndex:currentPageIndex];
-		topPageReverseImage.contents = (id)[self imageForPageIndex:currentPageIndex];
+		topPage.contents = (id)[self cachedImageForPageIndex:currentPageIndex];
+		topPageReverseImage.contents = (id)[self cachedImageForPageIndex:currentPageIndex];
 		if (currentPageIndex < numberOfPages - 1)
-			bottomPage.contents = (id)[self imageForPageIndex:currentPageIndex + 1];
+			bottomPage.contents = (id)[self cachedImageForPageIndex:currentPageIndex + 1];
+		[self cleanCache];
 	} else {
 		topPage.contents = nil;
 		topPageReverseImage.contents = nil;
@@ -191,7 +220,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) didTurnPageForward {
 	interactionLocked = NO;
-	self.currentPageIndex = self.currentPageIndex + 1;
+	self.currentPageIndex = self.currentPageIndex + 1;	
 	[self didTurnToPageAtIndex:currentPageIndex];
 }
 
@@ -238,7 +267,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[CATransaction setValue:(id)kCFBooleanTrue
 					 forKey:kCATransactionDisableActions];
 	
-	[self reloadImages];
+	[self getImages];
 	
 	self.leafEdge = 1.0;
 	
@@ -301,7 +330,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		interactionLocked = YES;
 		[self performSelector:@selector(didTurnPageForward)
 				   withObject:nil 
-				   afterDelay:duration + 0.2];
+				   afterDelay:duration + 0.25];
 	}
 	else {
 		self.leafEdge = 1.0;
@@ -309,7 +338,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		interactionLocked = YES;
 		[self performSelector:@selector(didTurnPageBackward)
 				   withObject:nil 
-				   afterDelay:duration + 0.2];
+				   afterDelay:duration + 0.25];
 	}
 	[CATransaction setValue:[NSNumber numberWithFloat:duration]
 					 forKey:kCATransactionAnimationDuration];
@@ -329,7 +358,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 		[self setLayerFrames];
 		[CATransaction commit];
 		
-		[self reloadImages];
+		[pageCache removeAllObjects];
+		[self getImages];
 		
 		CGFloat touchRectsWidth = self.bounds.size.width / 7;
 		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,

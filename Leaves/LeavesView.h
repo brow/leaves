@@ -32,6 +32,8 @@
 	id<LeavesViewDelegate> delegate;
 	
 	CGSize pageSize;
+	NSMutableDictionary *pageCache;
+	
 	CGPoint touchBeganPoint;
 	BOOL touchIsActive;
 	CGRect nextPageRect, prevPageRect;
@@ -40,6 +42,7 @@
 
 @property (assign) id<LeavesViewDataSource> dataSource;
 @property (assign) id<LeavesViewDelegate> delegate;
+@property (readonly) CGFloat targetWidth;
 
 - (void) reloadData;
 
