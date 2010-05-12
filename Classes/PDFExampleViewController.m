@@ -56,6 +56,7 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
+	leavesView.backgroundRendering = YES;
 	[self displayPageNumber:1];
 }
 
