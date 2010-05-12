@@ -169,6 +169,11 @@ CGFloat distance(CGPoint a, CGPoint b);
 	topPageOverlay.frame = topPage.bounds;
 }
 
+- (void) willTurnToPageAtIndex:(NSUInteger)index {
+	if ([delegate respondsToSelector:@selector(leavesView:willTurnToPageAtIndex:)])
+		[delegate leavesView:self willTurnToPageAtIndex:index];
+}
+
 - (void) didTurnToPageAtIndex:(NSUInteger)index {
 	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)])
 		[delegate leavesView:self didTurnToPageAtIndex:index];
@@ -294,6 +299,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[CATransaction begin];
 	float duration;
 	if ((dragged && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage])) {
+		[self willTurnToPageAtIndex:currentPageIndex+1];
 		self.leafEdge = 0;
 		duration = leafEdge;
 		interactionLocked = YES;
@@ -304,6 +310,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 				   afterDelay:duration + 0.25];
 	}
 	else {
+		[self willTurnToPageAtIndex:currentPageIndex];
 		self.leafEdge = 1.0;
 		duration = 1 - leafEdge;
 		interactionLocked = YES;
