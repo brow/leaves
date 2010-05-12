@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "LeavesCache.h"
 
 @protocol LeavesViewDataSource;
 @protocol LeavesViewDelegate;
@@ -28,11 +29,11 @@
 	CGFloat leafEdge;
 	NSUInteger currentPageIndex;
 	NSUInteger numberOfPages;
-	id<LeavesViewDataSource> dataSource;
 	id<LeavesViewDelegate> delegate;
 	
 	CGSize pageSize;
-	NSMutableDictionary *pageCache;
+	LeavesCache *pageCache;
+	BOOL backgroundRendering;
 	
 	CGPoint touchBeganPoint;
 	BOOL touchIsActive;
@@ -43,6 +44,8 @@
 @property (assign) id<LeavesViewDataSource> dataSource;
 @property (assign) id<LeavesViewDelegate> delegate;
 @property (readonly) CGFloat targetWidth;
+@property (assign) NSUInteger currentPageIndex;
+@property (assign) BOOL backgroundRendering;
 
 - (void) reloadData;
 
