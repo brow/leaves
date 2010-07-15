@@ -49,6 +49,4 @@ For more sophisticated examples, build the Xcode project included with Leaves.
 
 #Notes
 
-Leaves is 100% free to use for any purpose, but [donations](http://pledgie.com/campaigns/11077) are always appreciated and will allow me to spend more time making it the best UIView subclass it can be.
-
 The best way to get an answer to your question about programming with Leaves is the [Leaves Developers mailing list](http://groups.google.com/group/leaves-developers), which I keep an eye on.  But if you find a bug, be sure to visit the [tracker](http://github.com/brow/leaves/issues) or message me directly.
