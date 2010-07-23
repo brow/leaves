@@ -13,5 +13,10 @@
 	LeavesView *leavesView;
 }
 
+// added by Lnkd.com?24 - use designated initializer to avoid continuous loop when loaded from NIB
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle;
+
+- (id)init;
+
 @end
 
