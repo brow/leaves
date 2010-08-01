@@ -14,7 +14,6 @@
    leavesView = [[LeavesView alloc] initWithFrame:CGRectZero];
 }
 
-// changed by Lnkd.com?24 - use designated initializer to avoid continuous loop when loaded from NIB
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
    if (self = [super initWithNibName:nibName bundle:nibBundle]) {
@@ -27,7 +26,6 @@
    return [self initWithNibName:nil bundle:nil];
 }
 
-// added by Lnkd.com?24 - allow loading LeavesViewController subclass from a NIB
 - (void) awakeFromNib {
 	[super awakeFromNib];
 	[self initialize];
