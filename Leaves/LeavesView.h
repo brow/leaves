@@ -44,11 +44,20 @@
 
 @property (assign) id<LeavesViewDataSource> dataSource;
 @property (assign) id<LeavesViewDelegate> delegate;
+
+// the automatically determined width of the interactive areas on either side of the page
 @property (readonly) CGFloat targetWidth;
 @property (assign) CGFloat preferredTargetWidth;
+
+// the zero-based index of the page currently being displayed.
 @property (assign) NSUInteger currentPageIndex;
+
+// If backgroundRendering is YES, some pages not currently being displayed will be pre-rendered in background threads.
+// The default value is NO.  Only set this to YES if your implementation of the data source methods is thread-safe.
 @property (assign) BOOL backgroundRendering;
 
+
+// refreshes the contents of all pages via the data source methods, much like -[UITableView reloadData]
 - (void) reloadData;
 
 @end
@@ -61,11 +70,15 @@
 
 @end
 
+
 @protocol LeavesViewDelegate <NSObject>
 
 @optional
 
+// called when the user touches up on the left or right side of the page, or finishes dragging the page
 - (void) leavesView:(LeavesView *)leavesView willTurnToPageAtIndex:(NSUInteger)pageIndex;
+
+// called when the page-turn animation (following a touch-up or drag) completes 
 - (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSUInteger)pageIndex;
 
 @end
