@@ -33,6 +33,7 @@
 	
 	CGSize pageSize;
 	LeavesCache *pageCache;
+	CGFloat preferredTargetWidth;
 	BOOL backgroundRendering;
 	
 	CGPoint touchBeganPoint;
@@ -44,6 +45,7 @@
 @property (assign) id<LeavesViewDataSource> dataSource;
 @property (assign) id<LeavesViewDelegate> delegate;
 @property (readonly) CGFloat targetWidth;
+@property (assign) CGFloat preferredTargetWidth;
 @property (assign) NSUInteger currentPageIndex;
 @property (assign) BOOL backgroundRendering;
 
