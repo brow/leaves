@@ -119,10 +119,19 @@ CGFloat distance(CGPoint a, CGPoint b);
     [super dealloc];
 }
 
-- (void) reloadData {
+- (void) loadData {
+	numberOfPages = [pageCache.dataSource numberOfPagesInLeavesView:self];
+   // getImages defered until layoutSubvies
+}
+
+- (void) reloadDataWithPageIndex:(NSUInteger)newPageIndex {
 	[pageCache flush];
 	numberOfPages = [pageCache.dataSource numberOfPagesInLeavesView:self];
-//	self.currentPageIndex = 0; // moved to layoutSubviews
+	self.currentPageIndex = newPageIndex;
+}
+
+- (void) reloadData {
+   [self reloadDataWithPageIndex:currentPageIndex];
 }
 
 - (void) getImages {

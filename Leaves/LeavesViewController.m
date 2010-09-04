@@ -8,6 +8,10 @@
 
 #import "LeavesViewController.h"
 
+@interface LeavesView ()
+- (void) loadData;
+@end
+
 @implementation LeavesViewController
 
 - (void) initialize {
@@ -59,7 +63,7 @@
 	[super viewDidLoad];
 	leavesView.dataSource = self;
 	leavesView.delegate = self;
-	[leavesView reloadData];
+	[leavesView loadData];
 }
 
 @end
