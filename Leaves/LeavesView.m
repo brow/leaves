@@ -122,7 +122,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void) reloadData {
 	[pageCache flush];
 	numberOfPages = [pageCache.dataSource numberOfPagesInLeavesView:self];
-	self.currentPageIndex = 0;
+//	self.currentPageIndex = 0; // moved to layoutSubviews
 }
 
 - (void) getImages {
@@ -357,7 +357,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 		[self setLayerFrames];
 		[CATransaction commit];
 		pageCache.pageSize = self.bounds.size;
-		[self getImages];
+//		[self getImages];
+		self.currentPageIndex = 0;
 		[self updateTargetRects];
 	}
 }
