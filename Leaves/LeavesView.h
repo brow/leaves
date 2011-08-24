@@ -10,10 +10,16 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LeavesCache.h"
 
+@class LeavesTiledLayer;
+@class LeavesTiledLayerDelegate;
 @protocol LeavesViewDataSource;
 @protocol LeavesViewDelegate;
 
 @interface LeavesView : UIView {
+    
+    LeavesTiledLayer *topPageZoomLayer;      
+    LeavesTiledLayerDelegate *topPageZoomDelegate;
+    
 	CALayer *topPage;
 	CALayer *topPageOverlay;
 	CAGradientLayer *topPageShadow;
@@ -40,6 +46,8 @@
 	BOOL touchIsActive;
 	CGRect nextPageRect, prevPageRect;
 	BOOL interactionLocked;
+    
+    BOOL zoomActive;
 }
 
 @property (assign) id<LeavesViewDataSource> dataSource;
@@ -58,6 +66,9 @@
 // The default value is NO.  Only set this to YES if your implementation of the data source methods is thread-safe.
 @property (assign) BOOL backgroundRendering;
 
+// set this value to YES to activate zooming
+@property (assign) BOOL zoomActive;
+
 // refreshes the contents of all pages via the data source methods, much like -[UITableView reloadData]
 - (void) reloadData;
 
@@ -68,7 +79,7 @@
 
 - (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView;
 - (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx;
-
+- (void)renderTiledPageAtIndex:(NSUInteger)index forLayer:(LeavesTiledLayer*)layer inContext:(CGContextRef)ctx;
 @end
 
 

@@ -7,6 +7,8 @@
 //
 
 #import "LeavesView.h"
+#import "LeavesTiledLayer.h"
+#import "LeavesTiledLayerDelegate.h"
 
 @interface LeavesView () 
 
@@ -21,6 +23,21 @@ CGFloat distance(CGPoint a, CGPoint b);
 @synthesize delegate;
 @synthesize leafEdge, currentPageIndex, backgroundRendering, preferredTargetWidth;
 
+- (void)setZoomActive:(BOOL)aZoomActive {
+    zoomActive = aZoomActive;
+    
+    if(zoomActive) {
+        topPageZoomDelegate.pageIndex = self.currentPageIndex;
+        [topPageZoomLayer setNeedsDisplay];
+    } else {
+        topPageZoomLayer.contents = nil;
+    }
+}
+
+- (BOOL)zoomActive {
+    return zoomActive;
+}
+
 - (void) setUpLayers {
 	self.clipsToBounds = YES;
 	
@@ -29,6 +46,13 @@ CGFloat distance(CGPoint a, CGPoint b);
 	topPage.contentsGravity = kCAGravityLeft;
 	topPage.backgroundColor = [[UIColor whiteColor] CGColor];
 	
+    topPageZoomLayer = [[LeavesTiledLayer alloc] init];
+    topPageZoomLayer.masksToBounds = YES;
+    topPageZoomLayer.contentsGravity = kCAGravityLeft; 
+    
+    topPageZoomDelegate = [[LeavesTiledLayerDelegate alloc] init];
+    topPageZoomLayer.delegate = topPageZoomDelegate;
+    
 	topPageOverlay = [[CALayer alloc] init];
 	topPageOverlay.backgroundColor = [[[UIColor blackColor] colorWithAlphaComponent:0.2] CGColor];
 	
@@ -79,6 +103,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[bottomPage addSublayer:bottomPageShadow];
 	[self.layer addSublayer:bottomPage];
 	[self.layer addSublayer:topPage];
+    [self.layer addSublayer:topPageZoomLayer];
 	[self.layer addSublayer:topPageReverse];
 	
 	self.leafEdge = 1.0;
@@ -105,6 +130,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void)dealloc {
 	[topPage release];
+    [topPageZoomLayer release];
+    [topPageZoomDelegate release];
 	[topPageShadow release];
 	[topPageOverlay release];
 	[topPageReverse release];
@@ -146,6 +173,14 @@ CGFloat distance(CGPoint a, CGPoint b);
 							   self.layer.bounds.origin.y, 
 							   leafEdge * self.bounds.size.width, 
 							   self.layer.bounds.size.height);
+    
+    
+    topPageZoomLayer.frame =  CGRectMake(self.layer.bounds.origin.x, 
+                                         self.layer.bounds.origin.y, 
+                                         leafEdge * self.bounds.size.width, 
+                                         self.layer.bounds.size.height);
+    
+    
 	topPageReverse.frame = CGRectMake(self.layer.bounds.origin.x + (2*leafEdge-1) * self.bounds.size.width, 
 									  self.layer.bounds.origin.y, 
 									  (1-leafEdge) * self.bounds.size.width, 
@@ -199,10 +234,12 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (BOOL) touchedNextPage {
+    if(self.zoomActive) return NO;
 	return CGRectContainsPoint(nextPageRect, touchBeganPoint);
 }
 
 - (BOOL) touchedPrevPage {
+    if(self.zoomActive) return NO;
 	return CGRectContainsPoint(prevPageRect, touchBeganPoint);
 }
 
@@ -240,6 +277,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) setDataSource:(id<LeavesViewDataSource>)value {
 	pageCache.dataSource = value;
+    topPageZoomDelegate.dataSource = value;
 }
 
 - (void) setLeafEdge:(CGFloat)aLeafEdge {
@@ -307,7 +345,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[CATransaction commit];
 }
 
-
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	if (!touchIsActive)
 		return;
@@ -361,6 +398,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		[self updateTargetRects];
 	}
 }
+
 
 @end
 

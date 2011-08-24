@@ -101,5 +101,4 @@
 	pageSize = value;
 	[self flush];
 }
-
 @end
