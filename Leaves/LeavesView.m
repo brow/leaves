@@ -26,12 +26,23 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void)setZoomActive:(BOOL)aZoomActive {
     zoomActive = aZoomActive;
     
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue
+					 forKey:kCATransactionDisableActions];    
+    [CATransaction setValue:0 
+                     forKey:kCATransactionAnimationDuration];
+    
     if(zoomActive) {
         topPageZoomDelegate.pageIndex = self.currentPageIndex;
-        [topPageZoomLayer setNeedsDisplay];
+        topPageZoomLayer.hidden = NO;
     } else {
+        topPageZoomDelegate.pageIndex = -1;
         topPageZoomLayer.contents = nil;
+        topPageZoomLayer.hidden = YES;
     }
+    
+    [topPageZoomLayer setNeedsDisplay];   
+    [CATransaction commit];
 }
 
 - (BOOL)zoomActive {
@@ -49,9 +60,11 @@ CGFloat distance(CGPoint a, CGPoint b);
     topPageZoomLayer = [[LeavesTiledLayer alloc] init];
     topPageZoomLayer.masksToBounds = YES;
     topPageZoomLayer.contentsGravity = kCAGravityLeft; 
+    topPageZoomLayer.hidden = TRUE;
     
     topPageZoomDelegate = [[LeavesTiledLayerDelegate alloc] init];
     topPageZoomLayer.delegate = topPageZoomDelegate;
+    topPageZoomDelegate.pageIndex = -1;
     
 	topPageOverlay = [[CALayer alloc] init];
 	topPageOverlay.backgroundColor = [[[UIColor blackColor] colorWithAlphaComponent:0.2] CGColor];
@@ -105,7 +118,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[self.layer addSublayer:topPage];
     [self.layer addSublayer:topPageZoomLayer];
 	[self.layer addSublayer:topPageReverse];
-	
+
 	self.leafEdge = 1.0;
 }
 
@@ -156,9 +169,12 @@ CGFloat distance(CGPoint a, CGPoint b);
 	if (currentPageIndex < numberOfPages) {
 		if (currentPageIndex > 0 && backgroundRendering)
 			[pageCache precacheImageForPageIndex:currentPageIndex-1];
-		topPage.contents = (id)[pageCache cachedImageForPageIndex:currentPageIndex];
+		
+        topPage.contents = (id)[pageCache cachedImageForPageIndex:currentPageIndex];
 		topPageReverseImage.contents = (id)[pageCache cachedImageForPageIndex:currentPageIndex];
-		if (currentPageIndex < numberOfPages - 1)
+		topPageZoomDelegate.pageIndex = currentPageIndex;
+        
+        if (currentPageIndex < numberOfPages - 1)
 			bottomPage.contents = (id)[pageCache cachedImageForPageIndex:currentPageIndex + 1];
 		[pageCache minimizeToPageIndex:currentPageIndex];
 	} else {
