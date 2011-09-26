@@ -79,9 +79,17 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	leavesView.dataSource = self;
+	leavesView.dataSource = self;    
 	leavesView.delegate = self;
+
 	[leavesView reloadData];
+    leavesScrollView.contentSize = leavesScrollView.bounds.size;    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    leavesScrollView.contentSize = leavesScrollView.bounds.size; 
 }
 
 #pragma mark - Scrollview delegate methods
@@ -106,6 +114,35 @@
     {
         leavesView.zoomActive = YES;
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{    
+    //reset zoom when rotating device
+    leavesScrollView.zoomScale = 1;
+       
+    if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) &&
+        leavesView.mode != LeavesViewModeSinglePage) 
+    {
+        
+        leavesView.mode = LeavesViewModeSinglePage;        
+    } 
+    else if( UIInterfaceOrientationIsLandscape(toInterfaceOrientation) &&
+            leavesView.mode != LeavesViewModeFacingPages) 
+    {
+        
+        leavesView.mode = LeavesViewModeFacingPages;       
+    }      
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    leavesScrollView.contentSize = leavesScrollView.bounds.size;    
 }
 
 @end

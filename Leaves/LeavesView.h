@@ -8,20 +8,34 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "LeavesCache.h"
+
 
 @class LeavesTiledLayer;
 @class LeavesTiledLayerDelegate;
+@class LeavesCache;
 @protocol LeavesViewDataSource;
 @protocol LeavesViewDelegate;
+
+typedef enum LeavesViewMode {
+    LeavesViewModeSinglePage,
+    LeavesViewModeFacingPages,
+} LeavesViewMode;
+
 
 @interface LeavesView : UIView {
     
     LeavesTiledLayer *topPageZoomLayer;      
     LeavesTiledLayerDelegate *topPageZoomDelegate;
     
+    LeavesTiledLayer *topLeftPageZoomLayer;
+    LeavesTiledLayerDelegate *topLeftZoomDelegate;
+    
+    CALayer *leftPage;
+	CALayer *leftPageOverlay;
+    
 	CALayer *topPage;
 	CALayer *topPageOverlay;
+    CALayer *topLeftPageOverlay;
 	CAGradientLayer *topPageShadow;
 	
 	CALayer *topPageReverse;
@@ -48,6 +62,8 @@
 	BOOL interactionLocked;
     
     BOOL zoomActive;
+    NSInteger               numberOfVisiblePages;
+    LeavesViewMode          mode;
 }
 
 @property (assign) id<LeavesViewDataSource> dataSource;
@@ -68,6 +84,11 @@
 
 // set this value to YES to activate zooming
 @property (assign) BOOL zoomActive;
+
+// Retuns the number of visible pages (one page for portrait two for landscape view)
+@property (readonly) NSInteger     numberOfVisiblePages;
+
+@property (nonatomic, assign) LeavesViewMode mode;
 
 // refreshes the contents of all pages via the data source methods, much like -[UITableView reloadData]
 - (void) reloadData;
