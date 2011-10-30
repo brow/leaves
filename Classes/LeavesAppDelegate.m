@@ -14,7 +14,7 @@
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	UIViewController *rootViewController = [[[ExamplesViewController alloc] init] autorelease];
+	UIViewController *rootViewController = [[ExamplesViewController alloc] init];
 	viewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
 	[window addSubview:viewController.view];
@@ -24,10 +24,5 @@
 }
 
 
-- (void)dealloc {
-    [viewController release];
-    [window release];
-    [super dealloc];
-}
 
 @end

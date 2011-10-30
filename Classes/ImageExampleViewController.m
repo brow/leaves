@@ -22,10 +22,6 @@
     return self;
 }
 
-- (void)dealloc {
-	[images release];
-    [super dealloc];
-}
 
 #pragma mark LeavesViewDataSource methods
 

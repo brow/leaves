@@ -31,10 +31,6 @@
 	[self initialize];
 }
 
-- (void)dealloc {
-	[leavesView release];
-    [super dealloc];
-}
 
 #pragma mark LeavesViewDataSource methods
 

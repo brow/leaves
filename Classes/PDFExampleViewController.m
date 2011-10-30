@@ -22,7 +22,6 @@
 
 - (void)dealloc {
 	CGPDFDocumentRelease(pdf);
-    [super dealloc];
 }
 
 - (void) displayPageNumber:(NSUInteger)pageNumber {

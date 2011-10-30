@@ -21,9 +21,6 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
     return self;
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 #pragma mark UITableViewDataSource methods
 
@@ -44,7 +41,7 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
 	switch (indexPath.row) {
@@ -62,16 +59,16 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
 	UIViewController *viewController;
 	switch (indexPath.row) {
 		case PDF: 
-			viewController = [[[PDFExampleViewController alloc] init] autorelease];
+			viewController = [[PDFExampleViewController alloc] init];
 			break;
 		case IMAGE: 
-			viewController = [[[ImageExampleViewController alloc] init] autorelease]; 
+			viewController = [[ImageExampleViewController alloc] init]; 
 			break;
 		case PROCEDURAL:
-			viewController = [[[ProceduralExampleViewController alloc] init] autorelease]; 
+			viewController = [[ProceduralExampleViewController alloc] init]; 
 			break;
 		default: 
-			viewController = [[[UIViewController alloc] init] autorelease];
+			viewController = [[UIViewController alloc] init];
 	} 
 	[self.navigationController pushViewController:viewController animated:YES];
 }
