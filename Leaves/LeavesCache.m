@@ -7,7 +7,7 @@
 //
 
 #import "LeavesCache.h"
-#import "LeavesView.h"
+
 
 @implementation LeavesCache
 
@@ -41,15 +41,15 @@
 												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
 	CGColorSpaceRelease(colorSpace);
 	CGContextClipToRect(context, CGRectMake(0, 0, pageSize.width, pageSize.height));
-	
+    
 	[dataSource renderPageAtIndex:pageIndex inContext:context];
-	
+    
 	CGImageRef image = CGBitmapContextCreateImage(context);
 	CGContextRelease(context);
-	
+    
 	[UIImage imageWithCGImage:image];
 	CGImageRelease(image);
-	
+    
 	return image;
 }
 
@@ -80,11 +80,15 @@
 						   withObject:[NSNumber numberWithInt:pageIndex]];
 }
 
-- (void) minimizeToPageIndex:(NSUInteger)pageIndex {
+- (void) minimizeToPageIndex:(NSUInteger)pageIndex viewMode:(LeavesViewMode)viewMode {
 	/* Uncache all pages except previous, current, and next. */
 	@synchronized (pageCache) {
+        int cutoffValueFromPageIndex = 2;
+        if (viewMode == LeavesViewModeFacingPages) {
+            cutoffValueFromPageIndex = 3;
+        }
 		for (NSNumber *key in [pageCache allKeys])
-			if (ABS([key intValue] - (int)pageIndex) > 2)
+			if (ABS([key intValue] - (int)pageIndex) > cutoffValueFromPageIndex)
 				[pageCache removeObjectForKey:key];
 	}
 }
@@ -101,5 +105,4 @@
 	pageSize = value;
 	[self flush];
 }
-
 @end

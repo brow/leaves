@@ -11,6 +11,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		5B2D1CA114053BE70076B90C /* LeavesTiledLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D1CA014053BE70076B90C /* LeavesTiledLayerDelegate.m */; };
+		5B5B759114052939008EDBE8 /* LeavesTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B759014052939008EDBE8 /* LeavesTiledLayer.m */; };
 		D337E308119B61A5003E5728 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D337E307119B61A5003E5728 /* LeavesCache.m */; };
 		D33D45A2117BDE0100BA7203 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33D45A1117BDE0100BA7203 /* QuartzCore.framework */; };
 		D33D4A0D117C34F000BA7203 /* ImageExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4A0C117C34F000BA7203 /* ImageExampleViewController.m */; };
@@ -36,6 +38,10 @@
 		1D6058910D05DD3D006BFB54 /* Leaves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leaves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5B2D1C9F14053BE70076B90C /* LeavesTiledLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesTiledLayerDelegate.h; sourceTree = "<group>"; };
+		5B2D1CA014053BE70076B90C /* LeavesTiledLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesTiledLayerDelegate.m; sourceTree = "<group>"; };
+		5B5B758F14052939008EDBE8 /* LeavesTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesTiledLayer.h; sourceTree = "<group>"; };
+		5B5B759014052939008EDBE8 /* LeavesTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesTiledLayer.m; sourceTree = "<group>"; };
 		D337E306119B61A5003E5728 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
 		D337E307119B61A5003E5728 /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
 		D33D45A1117BDE0100BA7203 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -146,6 +152,10 @@
 				D33D4E58117D818100BA7203 /* LeavesView.m */,
 				D33D4E59117D818100BA7203 /* LeavesViewController.h */,
 				D33D4E5A117D818100BA7203 /* LeavesViewController.m */,
+				5B5B758F14052939008EDBE8 /* LeavesTiledLayer.h */,
+				5B5B759014052939008EDBE8 /* LeavesTiledLayer.m */,
+				5B2D1C9F14053BE70076B90C /* LeavesTiledLayerDelegate.h */,
+				5B2D1CA014053BE70076B90C /* LeavesTiledLayerDelegate.m */,
 			);
 			path = Leaves;
 			sourceTree = "<group>";
@@ -204,7 +214,11 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Leaves" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -245,6 +259,8 @@
 				D33D4F41117E244C00BA7203 /* ExamplesViewController.m in Sources */,
 				D33D5176117E780300BA7203 /* ProceduralExampleViewController.m in Sources */,
 				D337E308119B61A5003E5728 /* LeavesCache.m in Sources */,
+				5B5B759114052939008EDBE8 /* LeavesTiledLayer.m in Sources */,
+				5B2D1CA114053BE70076B90C /* LeavesTiledLayerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

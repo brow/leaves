@@ -5,18 +5,23 @@
 //  Created by Tom Brow on 4/18/10.
 //  Copyright Tom Brow 2010. All rights reserved.
 //
+#define ZOOM_AMOUNT 0.25f
+#define NO_ZOOM_SCALE 1.0f
+#define MINIMUM_ZOOM_SCALE 1.0f
+#define MAXIMUM_ZOOM_SCALE 5.0f
 
 #import "LeavesViewController.h"
 
 @implementation LeavesViewController
 
 - (void) initialize {
-   leavesView = [[LeavesView alloc] initWithFrame:CGRectZero];
+    leavesView = [[LeavesView alloc] initWithFrame:CGRectZero];
+    leavesScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
 }
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
-   if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+   if ((self = [super initWithNibName:nibName bundle:nibBundle]) ) {
       [self initialize];
    }
    return self;
@@ -50,16 +55,94 @@
 
 - (void)loadView {
 	[super loadView];
-	leavesView.frame = self.view.bounds;
+    leavesScrollView.frame = self.view.bounds;
+    leavesScrollView.scrollsToTop = NO;
+    leavesScrollView.directionalLockEnabled = YES;
+    leavesScrollView.showsVerticalScrollIndicator = NO;
+    leavesScrollView.showsHorizontalScrollIndicator = NO;
+    leavesScrollView.contentMode = UIViewContentModeRedraw;
+    leavesScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    leavesScrollView.minimumZoomScale = MINIMUM_ZOOM_SCALE; 
+    leavesScrollView.maximumZoomScale = MAXIMUM_ZOOM_SCALE;
+    leavesScrollView.contentSize = leavesScrollView.bounds.size;
+    leavesScrollView.backgroundColor = [UIColor clearColor];
+    leavesScrollView.delegate = self;    
+    leavesScrollView.scrollEnabled = YES;     
+    
+	leavesView.frame = leavesScrollView.bounds;
 	leavesView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-	[self.view addSubview:leavesView];
+	
+    [leavesScrollView addSubview:leavesView];
+    
+    [self.view addSubview:leavesScrollView];
 }
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	leavesView.dataSource = self;
+	leavesView.dataSource = self;    
 	leavesView.delegate = self;
+
 	[leavesView reloadData];
+    leavesScrollView.contentSize = leavesScrollView.bounds.size;    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    leavesScrollView.contentSize = leavesScrollView.bounds.size; 
+}
+
+#pragma mark - Scrollview delegate methods
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return leavesView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)aScrollView 
+{
+    NSLog(@"view zoom %f", aScrollView.zoomScale);
+    if(aScrollView.zoomScale == 1)
+    {
+        leavesView.zoomActive = NO;
+    }
+}
+
+- (void)scrollViewWillBeginZooming:(UIScrollView *)aScrollView withView:(UIView *)view
+{
+    NSLog(@"view will zoom");
+    if(aScrollView.zoomScale == 1) 
+    {
+        leavesView.zoomActive = YES;
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{    
+    //reset zoom when rotating device
+    leavesScrollView.zoomScale = 1;
+       
+    if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) &&
+        leavesView.mode != LeavesViewModeSinglePage) 
+    {
+        
+        leavesView.mode = LeavesViewModeSinglePage;        
+    } 
+    else if( UIInterfaceOrientationIsLandscape(toInterfaceOrientation) &&
+            leavesView.mode != LeavesViewModeFacingPages) 
+    {
+        
+        leavesView.mode = LeavesViewModeFacingPages;       
+    }      
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    leavesScrollView.contentSize = leavesScrollView.bounds.size;    
 }
 
 @end
