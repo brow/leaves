@@ -22,11 +22,6 @@
 	return self;
 }
 
-- (void) dealloc
-{
-	[pageCache release];
-	[super dealloc];
-}
 
 
 
@@ -70,9 +65,9 @@
 }
 
 - (void) precacheImageForPageIndexNumber:(NSNumber *)pageIndexNumber {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	[self cachedImageForPageIndex:[pageIndexNumber intValue]];
-	[pool release];
+	@autoreleasepool {
+		[self cachedImageForPageIndex:[pageIndexNumber intValue]];
+	}
 }
 
 - (void) precacheImageForPageIndex:(NSUInteger)pageIndex {

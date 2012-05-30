@@ -12,12 +12,12 @@
 
 @interface LeavesCache : NSObject {
 	NSMutableDictionary *pageCache;
-	id<LeavesViewDataSource> dataSource;
+	id<LeavesViewDataSource> __unsafe_unretained dataSource;
 	CGSize pageSize;
 }
 
 @property (assign) CGSize pageSize;
-@property (assign) id<LeavesViewDataSource> dataSource;
+@property (unsafe_unretained) id<LeavesViewDataSource> dataSource;
 
 - (id) initWithPageSize:(CGSize)aPageSize;
 - (CGImageRef) cachedImageForPageIndex:(NSUInteger)pageIndex;

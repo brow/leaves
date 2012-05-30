@@ -29,7 +29,7 @@
 	CGFloat leafEdge;
 	NSUInteger currentPageIndex;
 	NSUInteger numberOfPages;
-	id<LeavesViewDelegate> delegate;
+	id<LeavesViewDelegate> __unsafe_unretained delegate;
 	
 	CGSize pageSize;
 	LeavesCache *pageCache;
@@ -42,8 +42,8 @@
 	BOOL interactionLocked;
 }
 
-@property (assign) id<LeavesViewDataSource> dataSource;
-@property (assign) id<LeavesViewDelegate> delegate;
+@property (unsafe_unretained) id<LeavesViewDataSource> dataSource;
+@property (unsafe_unretained) id<LeavesViewDelegate> delegate;
 
 // the automatically determined width of the interactive areas on either side of the page
 @property (readonly) CGFloat targetWidth;

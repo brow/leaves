@@ -103,21 +103,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[self initialize];
 }
 
-- (void)dealloc {
-	[topPage release];
-	[topPageShadow release];
-	[topPageOverlay release];
-	[topPageReverse release];
-	[topPageReverseImage release];
-	[topPageReverseOverlay release];
-	[topPageReverseShading release];
-	[bottomPage release];
-	[bottomPageShadow release];
-	
-	[pageCache release];
-	
-    [super dealloc];
-}
 
 - (void) reloadData {
 	[pageCache flush];
