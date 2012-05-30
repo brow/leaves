@@ -60,6 +60,7 @@
 
 // refreshes the contents of all pages via the data source methods, much like -[UITableView reloadData]
 - (void) reloadData;
+- (void) reloadDataWithPageIndex:(NSUInteger)newPageIndex;
 
 @end
 

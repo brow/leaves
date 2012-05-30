@@ -119,10 +119,19 @@ CGFloat distance(CGPoint a, CGPoint b);
     [super dealloc];
 }
 
-- (void) reloadData {
+- (void) loadData {
+	numberOfPages = [pageCache.dataSource numberOfPagesInLeavesView:self];
+   // getImages defered until layoutSubvies
+}
+
+- (void) reloadDataWithPageIndex:(NSUInteger)newPageIndex {
 	[pageCache flush];
 	numberOfPages = [pageCache.dataSource numberOfPagesInLeavesView:self];
-	self.currentPageIndex = 0;
+	self.currentPageIndex = newPageIndex;
+}
+
+- (void) reloadData {
+   [self reloadDataWithPageIndex:currentPageIndex];
 }
 
 - (void) getImages {
@@ -357,7 +366,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 		[self setLayerFrames];
 		[CATransaction commit];
 		pageCache.pageSize = self.bounds.size;
-		[self getImages];
+//		[self getImages];
+		self.currentPageIndex = 0;
 		[self updateTargetRects];
 	}
 }

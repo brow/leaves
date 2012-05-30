@@ -10,8 +10,9 @@
 #import "PDFExampleViewController.h"
 #import "ImageExampleViewController.h"
 #import "ProceduralExampleViewController.h"
+#import "OverlayExampleViewController.h"
 
-enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
+enum {PDF, IMAGE, PROCEDURAL, OVERLAY, NUM_EXAMPLES};
 
 @implementation ExamplesViewController
 
@@ -51,6 +52,7 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
 		case PDF: cell.textLabel.text = @"PDF example"; break;
 		case IMAGE: cell.textLabel.text = @"Image example"; break;
 		case PROCEDURAL: cell.textLabel.text = @"Procedural example"; break;
+		case OVERLAY: cell.textLabel.text = @"Overlay example"; break;
 		default: cell.textLabel.text = @"";
 	}    
     return cell;
@@ -69,6 +71,9 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
 			break;
 		case PROCEDURAL:
 			viewController = [[[ProceduralExampleViewController alloc] init] autorelease]; 
+			break;
+		case OVERLAY:
+			viewController = [[[OverlayExampleViewController alloc] initWithNibName:@"OverlayExampleViewController" bundle:nil] autorelease]; 
 			break;
 		default: 
 			viewController = [[[UIViewController alloc] init] autorelease];

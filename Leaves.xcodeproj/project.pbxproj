@@ -27,6 +27,9 @@
 		D33D4F01117D8EAE00BA7203 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4F00117D8EAE00BA7203 /* main.m */; };
 		D33D4F41117E244C00BA7203 /* ExamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4F40117E244C00BA7203 /* ExamplesViewController.m */; };
 		D33D5176117E780300BA7203 /* ProceduralExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D5175117E780300BA7203 /* ProceduralExampleViewController.m */; };
+		DD285C3F12272ED900570237 /* OverlayExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD285C3E12272ED900570237 /* OverlayExampleViewController.xib */; };
+		DD285C5412272F4200570237 /* OverlayExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD285C5212272F4200570237 /* OverlayExampleViewController.m */; };
+		DDE1A7E51227306D0056C938 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE1A7E41227306D0056C938 /* OverlayView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,11 @@
 		D33D4F40117E244C00BA7203 /* ExamplesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesViewController.m; sourceTree = "<group>"; };
 		D33D5174117E780300BA7203 /* ProceduralExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProceduralExampleViewController.h; sourceTree = "<group>"; };
 		D33D5175117E780300BA7203 /* ProceduralExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProceduralExampleViewController.m; sourceTree = "<group>"; };
+		DD285C3E12272ED900570237 /* OverlayExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayExampleViewController.xib; sourceTree = "<group>"; };
+		DD285C5112272F4200570237 /* OverlayExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayExampleViewController.h; sourceTree = "<group>"; };
+		DD285C5212272F4200570237 /* OverlayExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayExampleViewController.m; sourceTree = "<group>"; };
+		DDE1A7E31227306D0056C938 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
+		DDE1A7E41227306D0056C938 /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,8 @@
 				D33D4F40117E244C00BA7203 /* ExamplesViewController.m */,
 				D33D5174117E780300BA7203 /* ProceduralExampleViewController.h */,
 				D33D5175117E780300BA7203 /* ProceduralExampleViewController.m */,
+				DD285C5112272F4200570237 /* OverlayExampleViewController.h */,
+				DD285C5212272F4200570237 /* OverlayExampleViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -146,6 +156,8 @@
 				D33D4E58117D818100BA7203 /* LeavesView.m */,
 				D33D4E59117D818100BA7203 /* LeavesViewController.h */,
 				D33D4E5A117D818100BA7203 /* LeavesViewController.m */,
+				DDE1A7E31227306D0056C938 /* OverlayView.h */,
+				DDE1A7E41227306D0056C938 /* OverlayView.m */,
 			);
 			path = Leaves;
 			sourceTree = "<group>";
@@ -170,6 +182,7 @@
 				D33D4EC6117D8D4500BA7203 /* kitten2.jpg */,
 				D33D4EC7117D8D4500BA7203 /* kitten3.jpg */,
 				D33D4ECA117D8D4500BA7203 /* paper.pdf */,
+				DD285C3E12272ED900570237 /* OverlayExampleViewController.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -225,6 +238,7 @@
 				D33D4ECF117D8D4500BA7203 /* kitten3.jpg in Resources */,
 				D33D4ED1117D8D4500BA7203 /* MainWindow.xib in Resources */,
 				D33D4ED2117D8D4500BA7203 /* paper.pdf in Resources */,
+				DD285C3F12272ED900570237 /* OverlayExampleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +259,8 @@
 				D33D4F41117E244C00BA7203 /* ExamplesViewController.m in Sources */,
 				D33D5176117E780300BA7203 /* ProceduralExampleViewController.m in Sources */,
 				D337E308119B61A5003E5728 /* LeavesCache.m in Sources */,
+				DD285C5412272F4200570237 /* OverlayExampleViewController.m in Sources */,
+				DDE1A7E51227306D0056C938 /* OverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
