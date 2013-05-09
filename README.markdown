@@ -20,6 +20,12 @@ Leaves requires iPhone OS 3.0 or later.
 
 Add the files in the `Leaves` subdirectory to your Xcode project and ensure that you are linking against `QuartzCore.framework`.
 
+<!-- MacBuildServer Install Button -->
+<div class="macbuildserver-block">
+    <a class="macbuildserver-button" href="http://macbuildserver.com/project/github/build/?xcode_project=Leaves.xcodeproj&amp;target=Leaves&amp;repo_url=git%3A%2F%2Fgithub.com%2Fbrow%2Fleaves.git&amp;build_conf=Release" target="_blank"><img src="http://com.macbuildserver.github.s3-website-us-east-1.amazonaws.com/button_up.png"/></a><br/><sup><a href="http://macbuildserver.com/github/opensource/" target="_blank">by MacBuildServer</a></sup>
+</div>
+<!-- MacBuildServer Install Button -->
+
 #Getting Started
 
 Creating a page-turning interface is as simple as subclassing `LeavesViewController`:
