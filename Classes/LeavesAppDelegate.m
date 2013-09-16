@@ -15,9 +15,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	UIViewController *rootViewController = [[[ExamplesViewController alloc] init] autorelease];
-	viewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    
-	[window addSubview:viewController.view];
+    window.rootViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     [window makeKeyAndVisible];
 	
 	return YES;
@@ -25,7 +23,6 @@
 
 
 - (void)dealloc {
-    [viewController release];
     [window release];
     [super dealloc];
 }
