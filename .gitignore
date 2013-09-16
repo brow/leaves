@@ -13,9 +13,3 @@ build/*
 xcuserdata
 profile
 *.moved-aside
-
-# old skool
-.svn
-
-# osx noise
-.DS_Store
