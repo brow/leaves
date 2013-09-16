@@ -49,10 +49,10 @@
 @property (readonly) CGFloat targetWidth;
 
 // set this to a nonzero value to get a targetWidth other than the default
-@property (assign) CGFloat preferredTargetWidth;
+@property (nonatomic, assign) CGFloat preferredTargetWidth;
 
 // the zero-based index of the page currently being displayed.
-@property (assign) NSUInteger currentPageIndex;
+@property (nonatomic, assign) NSUInteger currentPageIndex;
 
 // If backgroundRendering is YES, some pages not currently being displayed will be pre-rendered in background threads.
 // The default value is NO.  Only set this to YES if your implementation of the data source methods is thread-safe.

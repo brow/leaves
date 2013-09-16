@@ -10,7 +10,7 @@
 
 @interface LeavesView () 
 
-@property (assign) CGFloat leafEdge;
+@property (nonatomic, assign) CGFloat leafEdge;
 
 @end
 
