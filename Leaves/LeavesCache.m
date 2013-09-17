@@ -31,6 +31,9 @@
 
 
 - (CGImageRef) imageForPageIndex:(NSUInteger)pageIndex {
+    if (CGSizeEqualToSize(pageSize, CGSizeZero))
+        return NULL;
+    
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = CGBitmapContextCreate(NULL, 
 												 pageSize.width, 
@@ -61,10 +64,12 @@
 	}
 	if (!pageImage) {
 		CGImageRef pageCGImage = [self imageForPageIndex:pageIndex];
-		pageImage = [UIImage imageWithCGImage:pageCGImage];
-		@synchronized (pageCache) {
-			[pageCache setObject:pageImage forKey:pageIndexNumber];
-		}
+        if (pageCGImage) {
+            pageImage = [UIImage imageWithCGImage:pageCGImage];
+            @synchronized (pageCache) {
+                [pageCache setObject:pageImage forKey:pageIndexNumber];
+            }
+        }
 	}
 	return pageImage.CGImage;
 }
