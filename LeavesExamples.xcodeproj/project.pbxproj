@@ -32,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Leaves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leaves.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* LeavesExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeavesExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D337E306119B61A5003E5728 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		EA97678717EB8E3C001A0F1C /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		EA97678817EB8E3C001A0F1C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		EA97678917EB8E3C001A0F1C /* paper.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = paper.pdf; sourceTree = "<group>"; };
-		EA97679917EB8FAB001A0F1C /* Leaves_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Leaves_Prefix.pch; path = LeavesExamples/Leaves_Prefix.pch; sourceTree = SOURCE_ROOT; };
+		EA97679917EB8FAB001A0F1C /* LeavesExamples_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeavesExamples_Prefix.pch; path = LeavesExamples/LeavesExamples_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		EA97679A17EB8FAB001A0F1C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LeavesExamples/main.m; sourceTree = SOURCE_ROOT; };
 		EA97679C17EB8FB2001A0F1C /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = LeavesExamples/Other/Utilities.h; sourceTree = SOURCE_ROOT; };
 		EA97679D17EB8FB2001A0F1C /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = LeavesExamples/Other/Utilities.m; sourceTree = SOURCE_ROOT; };
@@ -84,7 +84,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Leaves.app */,
+				1D6058910D05DD3D006BFB54 /* LeavesExamples.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 		EA97677C17EB8E3C001A0F1C /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				EA97679917EB8FAB001A0F1C /* Leaves_Prefix.pch */,
+				EA97679917EB8FAB001A0F1C /* LeavesExamples_Prefix.pch */,
 				EA97679A17EB8FAB001A0F1C /* main.m */,
 				EA97679C17EB8FB2001A0F1C /* Utilities.h */,
 				EA97679D17EB8FB2001A0F1C /* Utilities.m */,
@@ -175,9 +175,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Leaves */ = {
+		1D6058900D05DD3D006BFB54 /* LeavesExamples */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Leaves" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "LeavesExamples" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -187,9 +187,9 @@
 			);
 			dependencies = (
 			);
-			name = Leaves;
+			name = LeavesExamples;
 			productName = Leaves;
-			productReference = 1D6058910D05DD3D006BFB54 /* Leaves.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* LeavesExamples.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -201,7 +201,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Tom Brow";
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Leaves" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LeavesExamples" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -212,7 +212,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Leaves */,
+				1D6058900D05DD3D006BFB54 /* LeavesExamples */,
 			);
 		};
 /* End PBXProject section */
@@ -264,7 +264,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/LeavesExamples/Resources/LeavesExamples-Info.plist";
-				PRODUCT_NAME = Leaves;
+				PRODUCT_NAME = LeavesExamples;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -277,7 +277,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/LeavesExamples/Resources/LeavesExamples-Info.plist";
-				PRODUCT_NAME = Leaves;
+				PRODUCT_NAME = LeavesExamples;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -289,7 +289,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/LeavesExamples/Leaves_Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LeavesExamples/LeavesExamples_Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
@@ -304,7 +304,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/LeavesExamples/Leaves_Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LeavesExamples/LeavesExamples_Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
@@ -317,7 +317,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Leaves" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "LeavesExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -326,7 +326,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Leaves" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LeavesExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
