@@ -7,40 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "LeavesCache.h"
 
 @protocol LeavesViewDataSource;
 @protocol LeavesViewDelegate;
 
-@interface LeavesView : UIView {
-	CALayer *topPage;
-	CALayer *topPageOverlay;
-	CAGradientLayer *topPageShadow;
-	
-	CALayer *topPageReverse;
-	CALayer *topPageReverseImage;
-	CALayer *topPageReverseOverlay;
-	CAGradientLayer *topPageReverseShading;
-	
-	CALayer *bottomPage;
-	CAGradientLayer *bottomPageShadow;
-	
-	CGFloat leafEdge;
-	NSUInteger currentPageIndex;
-	NSUInteger numberOfPages;
-	id<LeavesViewDelegate> delegate;
-	
-	CGSize pageSize;
-	LeavesCache *pageCache;
-	CGFloat preferredTargetWidth;
-	BOOL backgroundRendering;
-	
-	CGPoint touchBeganPoint;
-	BOOL touchIsActive;
-	CGRect nextPageRect, prevPageRect;
-	BOOL interactionLocked;
-}
+@interface LeavesView : UIView
 
 @property (assign) id<LeavesViewDataSource> dataSource;
 @property (assign) id<LeavesViewDelegate> delegate;
@@ -59,28 +30,26 @@
 @property (assign) BOOL backgroundRendering;
 
 // refreshes the contents of all pages via the data source methods, much like -[UITableView reloadData]
-- (void) reloadData;
+- (void)reloadData;
 
 @end
-
 
 @protocol LeavesViewDataSource <NSObject>
 
-- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView;
-- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx;
+- (NSUInteger)numberOfPagesInLeavesView:(LeavesView*)leavesView;
+- (void)renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx;
 
 @end
-
 
 @protocol LeavesViewDelegate <NSObject>
 
 @optional
 
 // called when the user touches up on the left or right side of the page, or finishes dragging the page
-- (void) leavesView:(LeavesView *)leavesView willTurnToPageAtIndex:(NSUInteger)pageIndex;
+- (void)leavesView:(LeavesView *)leavesView willTurnToPageAtIndex:(NSUInteger)pageIndex;
 
 // called when the page-turn animation (following a touch-up or drag) completes 
-- (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSUInteger)pageIndex;
+- (void)leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSUInteger)pageIndex;
 
 @end
 

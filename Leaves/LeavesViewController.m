@@ -30,17 +30,17 @@
     [super dealloc];
 }
 
-#pragma mark LeavesViewDataSource methods
+#pragma mark LeavesViewDataSource
 
-- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
+- (NSUInteger)numberOfPagesInLeavesView:(LeavesView*)leavesView {
 	return 0;
 }
 
-- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
+- (void)renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
 	
 }
 
-#pragma mark UIViewController methods
+#pragma mark UIViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];

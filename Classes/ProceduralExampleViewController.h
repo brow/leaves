@@ -8,9 +8,6 @@
 
 #import "LeavesViewController.h"
 
-
-@interface ProceduralExampleViewController : LeavesViewController {
-
-}
+@interface ProceduralExampleViewController : LeavesViewController
 
 @end

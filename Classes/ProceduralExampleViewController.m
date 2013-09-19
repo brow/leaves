@@ -11,13 +11,13 @@
 
 @implementation ProceduralExampleViewController
 
-#pragma mark LeavesViewDataSource methods
+#pragma mark LeavesViewDataSource
 
-- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
+- (NSUInteger)numberOfPagesInLeavesView:(LeavesView*)leavesView {
 	return 10;
 }
 
-- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
+- (void)renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
 	CGRect bounds = CGContextGetClipBoundingBox(ctx);
 	CGContextSetFillColorWithColor(ctx, [[UIColor colorWithHue:index/10.0 
 													saturation:0.8

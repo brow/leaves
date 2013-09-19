@@ -9,43 +9,45 @@
 #import "LeavesCache.h"
 #import "LeavesView.h"
 
+@interface LeavesCache ()
+
+@property (readonly) NSMutableDictionary *pageCache;
+
+@end
+
 @implementation LeavesCache
 
-@synthesize dataSource, pageSize;
-
-- (id) initWithPageSize:(CGSize)aPageSize
+- (id)initWithPageSize:(CGSize)aPageSize
 {
-	if ([super init]) {
-		pageSize = aPageSize;
-		pageCache = [[NSMutableDictionary alloc] init];
+	if (self = [super init]) {
+		_pageSize = aPageSize;
+		_pageCache = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
 
-- (void) dealloc
+- (void)dealloc
 {
-	[pageCache release];
+	[_pageCache release];
 	[super dealloc];
 }
 
-
-
-- (CGImageRef) imageForPageIndex:(NSUInteger)pageIndex {
-    if (CGSizeEqualToSize(pageSize, CGSizeZero))
+- (CGImageRef)imageForPageIndex:(NSUInteger)pageIndex {
+    if (CGSizeEqualToSize(self.pageSize, CGSizeZero))
         return NULL;
     
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = CGBitmapContextCreate(NULL, 
-												 pageSize.width, 
-												 pageSize.height, 
+												 self.pageSize.width, 
+												 self.pageSize.height, 
 												 8,						/* bits per component*/
-												 pageSize.width * 4, 	/* bytes per row */
+												 self.pageSize.width * 4, 	/* bytes per row */
 												 colorSpace, 
 												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
 	CGColorSpaceRelease(colorSpace);
-	CGContextClipToRect(context, CGRectMake(0, 0, pageSize.width, pageSize.height));
+	CGContextClipToRect(context, CGRectMake(0, 0, self.pageSize.width, self.pageSize.height));
 	
-	[dataSource renderPageAtIndex:pageIndex inContext:context];
+	[self.dataSource renderPageAtIndex:pageIndex inContext:context];
 	
 	CGImageRef image = CGBitmapContextCreateImage(context);
 	CGContextRelease(context);
@@ -56,54 +58,54 @@
 	return image;
 }
 
-- (CGImageRef) cachedImageForPageIndex:(NSUInteger)pageIndex {
+- (CGImageRef)cachedImageForPageIndex:(NSUInteger)pageIndex {
 	NSNumber *pageIndexNumber = [NSNumber numberWithInt:pageIndex];
 	UIImage *pageImage;
-	@synchronized (pageCache) {
-		pageImage = [pageCache objectForKey:pageIndexNumber];
+	@synchronized (self.pageCache) {
+		pageImage = [self.pageCache objectForKey:pageIndexNumber];
 	}
 	if (!pageImage) {
 		CGImageRef pageCGImage = [self imageForPageIndex:pageIndex];
         if (pageCGImage) {
             pageImage = [UIImage imageWithCGImage:pageCGImage];
-            @synchronized (pageCache) {
-                [pageCache setObject:pageImage forKey:pageIndexNumber];
+            @synchronized (self.pageCache) {
+                [self.pageCache setObject:pageImage forKey:pageIndexNumber];
             }
         }
 	}
 	return pageImage.CGImage;
 }
 
-- (void) precacheImageForPageIndexNumber:(NSNumber *)pageIndexNumber {
+- (void)precacheImageForPageIndexNumber:(NSNumber *)pageIndexNumber {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	[self cachedImageForPageIndex:[pageIndexNumber intValue]];
 	[pool release];
 }
 
-- (void) precacheImageForPageIndex:(NSUInteger)pageIndex {
+- (void)precacheImageForPageIndex:(NSUInteger)pageIndex {
 	[self performSelectorInBackground:@selector(precacheImageForPageIndexNumber:)
 						   withObject:[NSNumber numberWithInt:pageIndex]];
 }
 
-- (void) minimizeToPageIndex:(NSUInteger)pageIndex {
+- (void)minimizeToPageIndex:(NSUInteger)pageIndex {
 	/* Uncache all pages except previous, current, and next. */
-	@synchronized (pageCache) {
-		for (NSNumber *key in [pageCache allKeys])
+	@synchronized (self.pageCache) {
+		for (NSNumber *key in [self.pageCache allKeys])
 			if (ABS([key intValue] - (int)pageIndex) > 2)
-				[pageCache removeObjectForKey:key];
+				[self.pageCache removeObjectForKey:key];
 	}
 }
 
-- (void) flush {
-	@synchronized (pageCache) {
-		[pageCache removeAllObjects];
+- (void)flush {
+	@synchronized (self.pageCache) {
+		[self.pageCache removeAllObjects];
 	}
 }
 
 #pragma mark accessors
 
-- (void) setPageSize:(CGSize)value {
-	pageSize = value;
+- (void)setPageSize:(CGSize)value {
+	_pageSize = value;
 	[self flush];
 }
 

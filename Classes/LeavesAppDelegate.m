@@ -11,19 +11,18 @@
 
 @implementation LeavesAppDelegate
 
-@synthesize window;
+@synthesize window=_window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	UIViewController *rootViewController = [[[ExamplesViewController alloc] init] autorelease];
-    window.rootViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    [window makeKeyAndVisible];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    [self.window makeKeyAndVisible];
 	
 	return YES;
 }
 
-
 - (void)dealloc {
-    [window release];
+    [_window release];
     [super dealloc];
 }
 

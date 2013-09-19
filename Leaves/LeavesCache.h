@@ -10,19 +10,15 @@
 
 @protocol LeavesViewDataSource;
 
-@interface LeavesCache : NSObject {
-	NSMutableDictionary *pageCache;
-	id<LeavesViewDataSource> dataSource;
-	CGSize pageSize;
-}
+@interface LeavesCache : NSObject
 
 @property (nonatomic, assign) CGSize pageSize;
 @property (assign) id<LeavesViewDataSource> dataSource;
 
-- (id) initWithPageSize:(CGSize)aPageSize;
-- (CGImageRef) cachedImageForPageIndex:(NSUInteger)pageIndex;
-- (void) precacheImageForPageIndex:(NSUInteger)pageIndex;
-- (void) minimizeToPageIndex:(NSUInteger)pageIndex;
-- (void) flush;
+- (id)initWithPageSize:(CGSize)aPageSize;
+- (CGImageRef)cachedImageForPageIndex:(NSUInteger)pageIndex;
+- (void)precacheImageForPageIndex:(NSUInteger)pageIndex;
+- (void)minimizeToPageIndex:(NSUInteger)pageIndex;
+- (void)flush;
 
 @end

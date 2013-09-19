@@ -8,8 +8,6 @@
 
 #import "LeavesViewController.h"
 
-@interface ImageExampleViewController : LeavesViewController {
-	NSArray *images;
-}
+@interface ImageExampleViewController : LeavesViewController
 
 @end

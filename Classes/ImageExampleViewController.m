@@ -9,32 +9,38 @@
 #import "ImageExampleViewController.h"
 #import "Utilities.h"
 
+@interface ImageExampleViewController ()
+
+@property (readonly) NSArray *images;
+
+@end
+
 @implementation ImageExampleViewController
 
 - (id)init {
     if (self = [super init]) {
-		images = [[NSArray alloc] initWithObjects:
-				  [UIImage imageNamed:@"kitten.jpg"],
-				  [UIImage imageNamed:@"kitten2.jpg"],
-				  [UIImage imageNamed:@"kitten3.jpg"],
-				  nil];
+		_images = [[NSArray alloc] initWithObjects:
+                   [UIImage imageNamed:@"kitten.jpg"],
+                   [UIImage imageNamed:@"kitten2.jpg"],
+                   [UIImage imageNamed:@"kitten3.jpg"],
+                   nil];
     }
     return self;
 }
 
 - (void)dealloc {
-	[images release];
+	[_images release];
     [super dealloc];
 }
 
-#pragma mark LeavesViewDataSource methods
+#pragma mark LeavesViewDataSource
 
-- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
-	return images.count;
+- (NSUInteger)numberOfPagesInLeavesView:(LeavesView*)leavesView {
+	return _images.count;
 }
 
-- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
-	UIImage *image = [images objectAtIndex:index];
+- (void)renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
+	UIImage *image = [_images objectAtIndex:index];
 	CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
 	CGAffineTransform transform = aspectFit(imageRect,
 											CGContextGetClipBoundingBox(ctx));

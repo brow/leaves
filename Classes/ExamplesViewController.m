@@ -11,21 +11,17 @@
 #import "ImageExampleViewController.h"
 #import "ProceduralExampleViewController.h"
 
-enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
+enum {ExamplePDF, ExampleImage, ExampleProcedural, NumExamples};
 
 @implementation ExamplesViewController
 
 - (id)init {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
     }
     return self;
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-
-#pragma mark UITableViewDataSource methods
+#pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
@@ -33,11 +29,9 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return NUM_EXAMPLES;
+    return NumExamples;
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -48,32 +42,34 @@ enum {PDF, IMAGE, PROCEDURAL, NUM_EXAMPLES};
     }
     
 	switch (indexPath.row) {
-		case PDF: cell.textLabel.text = @"PDF example"; break;
-		case IMAGE: cell.textLabel.text = @"Image example"; break;
-		case PROCEDURAL: cell.textLabel.text = @"Procedural example"; break;
+		case ExamplePDF: cell.textLabel.text = @"PDF example"; break;
+		case ExampleImage: cell.textLabel.text = @"Image example"; break;
+		case ExampleProcedural: cell.textLabel.text = @"Procedural example"; break;
 		default: cell.textLabel.text = @"";
 	}    
     return cell;
 }
 
-#pragma mark UITableViewDelegate methods
+#pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UIViewController *viewController;
 	switch (indexPath.row) {
-		case PDF: 
+		case ExamplePDF:
 			viewController = [[[PDFExampleViewController alloc] init] autorelease];
 			break;
-		case IMAGE: 
+		case ExampleImage:
 			viewController = [[[ImageExampleViewController alloc] init] autorelease]; 
 			break;
-		case PROCEDURAL:
+		case ExampleProcedural:
 			viewController = [[[ProceduralExampleViewController alloc] init] autorelease]; 
 			break;
 		default: 
-			viewController = [[[UIViewController alloc] init] autorelease];
-	} 
-	[self.navigationController pushViewController:viewController animated:YES];
+			viewController = nil;
+	}
+    
+    if (viewController)
+        [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

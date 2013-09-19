@@ -10,12 +10,18 @@
 #import "Utilities.h"
 #import "LeavesView.h"
 
+@interface PDFExampleViewController ()
+
+@property (readonly) CGPDFDocumentRef pdf;
+
+@end
+
 @implementation PDFExampleViewController
 
 - (id)init {
     if (self = [super init]) {
 		CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("paper.pdf"), NULL, NULL);
-		pdf = CGPDFDocumentCreateWithURL(pdfURL);
+		_pdf = CGPDFDocumentCreateWithURL(pdfURL);
 		CFRelease(pdfURL);
         
         self.leavesView.backgroundRendering = YES;
@@ -25,31 +31,31 @@
 }
 
 - (void)dealloc {
-	CGPDFDocumentRelease(pdf);
+	CGPDFDocumentRelease(_pdf);
     [super dealloc];
 }
 
-- (void) displayPageNumber:(NSUInteger)pageNumber {
+- (void)displayPageNumber:(NSUInteger)pageNumber {
 	self.navigationItem.title = [NSString stringWithFormat:
 								 @"Page %u of %lu", 
 								 pageNumber, 
-								 CGPDFDocumentGetNumberOfPages(pdf)];
+								 CGPDFDocumentGetNumberOfPages(_pdf)];
 }
 
-#pragma mark  LeavesViewDelegate methods
+#pragma mark LeavesViewDelegate
 
-- (void) leavesView:(LeavesView *)leavesView willTurnToPageAtIndex:(NSUInteger)pageIndex {
+- (void)leavesView:(LeavesView *)leavesView willTurnToPageAtIndex:(NSUInteger)pageIndex {
 	[self displayPageNumber:pageIndex + 1];
 }
 
-#pragma mark LeavesViewDataSource methods
+#pragma mark LeavesViewDataSource
 
-- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
-	return CGPDFDocumentGetNumberOfPages(pdf);
+- (NSUInteger)numberOfPagesInLeavesView:(LeavesView*)leavesView {
+	return CGPDFDocumentGetNumberOfPages(_pdf);
 }
 
-- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
-	CGPDFPageRef page = CGPDFDocumentGetPage(pdf, index + 1);
+- (void)renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
+	CGPDFPageRef page = CGPDFDocumentGetPage(_pdf, index + 1);
 	CGAffineTransform transform = aspectFit(CGPDFPageGetBoxRect(page, kCGPDFMediaBox),
 											CGContextGetClipBoundingBox(ctx));
 	CGContextConcatCTM(ctx, transform);

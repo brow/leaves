@@ -8,13 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class LeavesViewController;
-
-@interface LeavesAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-}
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@interface LeavesAppDelegate : NSObject <UIApplicationDelegate>
 
 @end
 

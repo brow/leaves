@@ -8,8 +8,6 @@
 
 #import "LeavesViewController.h"
 
-@interface PDFExampleViewController : LeavesViewController {
-	CGPDFDocumentRef pdf;
-}
+@interface PDFExampleViewController : LeavesViewController
 
 @end
