@@ -15,8 +15,11 @@
 - (id)init {
     if (self = [super init]) {
 		CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("paper.pdf"), NULL, NULL);
-		pdf = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+		pdf = CGPDFDocumentCreateWithURL(pdfURL);
 		CFRelease(pdfURL);
+        
+        self.leavesView.backgroundRendering = YES;
+        [self displayPageNumber:1];
     }
     return self;
 }
@@ -51,14 +54,6 @@
 											CGContextGetClipBoundingBox(ctx));
 	CGContextConcatCTM(ctx, transform);
 	CGContextDrawPDFPage(ctx, page);
-}
-
-#pragma mark UIViewController
-
-- (void) viewDidLoad {
-	[super viewDidLoad];
-	self.leavesView.backgroundRendering = YES;
-	[self displayPageNumber:1];
 }
 
 @end
