@@ -8,6 +8,7 @@
 
 #import "PDFExampleViewController.h"
 #import "Utilities.h"
+#import "LeavesView.h"
 
 @implementation PDFExampleViewController
 
@@ -56,7 +57,7 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	leavesView.backgroundRendering = YES;
+	self.leavesView.backgroundRendering = YES;
 	[self displayPageNumber:1];
 }
 

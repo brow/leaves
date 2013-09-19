@@ -7,32 +7,26 @@
 //
 
 #import "LeavesViewController.h"
+#import "LeavesView.h"
+
+@interface LeavesViewController () <LeavesViewDataSource, LeavesViewDelegate>
+
+@end
 
 @implementation LeavesViewController
 
-- (void) initialize {
-   leavesView = [[LeavesView alloc] initWithFrame:CGRectZero];
-}
-
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
-{
-   if (self = [super initWithNibName:nibName bundle:nibBundle]) {
-      [self initialize];
-   }
-   return self;
-}
-
-- (id)init {
-   return [self initWithNibName:nil bundle:nil];
-}
-
-- (void) awakeFromNib {
-	[super awakeFromNib];
-	[self initialize];
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+    if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+        _leavesView = [[LeavesView alloc] initWithFrame:CGRectZero];
+        _leavesView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _leavesView.dataSource = self;
+        _leavesView.delegate = self;
+    }
+    return self;
 }
 
 - (void)dealloc {
-	[leavesView release];
+	[_leavesView release];
     [super dealloc];
 }
 
@@ -46,20 +40,14 @@
 	
 }
 
-#pragma mark  UIViewController methods
+#pragma mark UIViewController methods
 
-- (void)loadView {
-	[super loadView];
-	leavesView.frame = self.view.bounds;
-	leavesView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-	[self.view addSubview:leavesView];
-}
-
-- (void) viewDidLoad {
+- (void)viewDidLoad {
 	[super viewDidLoad];
-	leavesView.dataSource = self;
-	leavesView.delegate = self;
-	[leavesView reloadData];
+    
+    _leavesView.frame = self.view.bounds;
+	[self.view addSubview:_leavesView];
+	[_leavesView reloadData];
 }
 
 @end

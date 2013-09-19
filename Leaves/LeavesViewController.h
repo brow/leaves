@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LeavesView.h"
 
-@interface LeavesViewController : UIViewController <LeavesViewDataSource, LeavesViewDelegate> {
-	LeavesView *leavesView;
-}
+@class LeavesView;
 
-// added by Lnkd.com?24 - use designated initializer to avoid continuous loop when loaded from NIB
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle;
+@interface LeavesViewController : UIViewController
 
-- (id)init;
+@property (readonly) LeavesView *leavesView;
 
 @end
 
