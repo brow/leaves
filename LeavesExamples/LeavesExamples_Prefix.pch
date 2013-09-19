@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Leaves' target in the 'Leaves' project
+// Prefix header for all source files of the 'LeavesExamples' target in the 'LeavesExamples' project
 //
 
 #ifdef __OBJC__
