@@ -29,7 +29,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 @implementation LeavesView
 
-- (void)setUpLayers {
+- (void)initCommon {
 	self.clipsToBounds = YES;
 	
 	_topPage = [[CALayer alloc] init];
@@ -89,26 +89,23 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[self.layer addSublayer:_topPage];
 	[self.layer addSublayer:_topPageReverse];
 	
-	self.leafEdge = 1.0;
-}
-
-- (void)initialize {
-	_backgroundRendering = NO;
+	_leafEdge = 1.0;
+    _backgroundRendering = NO;
 	_pageCache = [[LeavesCache alloc] initWithPageSize:self.bounds.size];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-		[self setUpLayers];
-		[self initialize];
+		[self initCommon];
     }
     return self;
 }
 
-- (void)awakeFromNib {
-	[super awakeFromNib];
-	[self setUpLayers];
-	[self initialize];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self initCommon];
+    }
+    return self;
 }
 
 - (void)dealloc {
