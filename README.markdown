@@ -1,52 +1,49 @@
 #Leaves
 
-Leaves is a simple way to present a page-turning interface similar to Apple's iBooks.  It comprises two classes, `LeavesView` and `LeavesViewController`, and occupies less than 100 kB compiled.  It uses only public APIs, sacrificing a portion of iBooks' visual flair to ensure that your application is safe for submission to the App Store.
+Leaves is an animated interface for navigating through a sequence of images
+using page-turning gestures. As of iOS 5, Leaves is mostly obsoleted by
+[UIPageViewController].
 
-Leaves supports:
+Leaves requires iOS 3.0 or later.
 
-- Text, images, PDFs -- anything that can be rendered in a graphics context
-- Drag or tap to turn the page
-- iPad- and iPhone-sized display areas 
+##Installation
 
-Leaves does *not* currently support:
+1. Add the files in the `Leaves` subdirectory to your Xcode project.
+2. Ensure that your target links against `QuartzCore.framework`.
 
-- Interactive elements on the page
-- Swipe gestures
-- Two-page landscape view
+##Usage
 
-Leaves requires iPhone OS 3.0 or later.
+Creating a page-turning view controller is as simple as subclassing
+[LeavesViewController][]:
 
-#Installation
+    #import "LeavesViewController.h"
 
-Add the files in the `Leaves` subdirectory to your Xcode project and ensure that you are linking against `QuartzCore.framework`.
+    @interface ColorSwatchViewController : LeavesViewController 
+    @end
 
-#Getting Started
+...and implementing the [LeavesViewDataSource][LeavesView] protocol:
 
-Creating a page-turning interface is as simple as subclassing `LeavesViewController`:
+    @implementation ColorSwatchViewController
 
-	@interface ColorSwatchViewController : LeavesViewController
-	@end
+    - (NSUInteger)numberOfPagesInLeavesView:(LeavesView*)leavesView { 
+        return 10;
+    }
 
-...and implementing the `LeavesViewDataSource` protocol:
+    - (void)renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)context { 
+        CGContextSetFillColorWithColor(
+            context, 
+            [[UIColor colorWithHue:index/10.0 
+                        saturation:0.8 
+                        brightness:0.8 
+                             alpha:1.0] CGColor]);
+        CGContextFillRect(ctx, CGContextGetClipBoundingBox(ctx));
+    }
 
-	@implementation ColorSwatchViewController
+    @end
 
-	- (NSUInteger) numberOfPagesInLeavesView:(LeavesView*)leavesView {
-		return 10;
-	}
+You may also use [LeavesView] directly. For more examples, see the included
+`LeavesExamples` project.
 
-	- (void) renderPageAtIndex:(NSUInteger)index inContext:(CGContextRef)ctx {
-		CGContextSetFillColorWithColor(ctx, [[UIColor colorWithHue:index/10.0 
-														saturation:0.8
-														brightness:0.8 
-															 alpha:1.0] CGColor]);
-		CGContextFillRect(ctx, CGContextGetClipBoundingBox(ctx));
-	}
-
-	@end
-
-For more sophisticated examples, build the Xcode project included with Leaves.
-
-#Notes
-
-The best way to get an answer to your question about programming with Leaves is the [Leaves Developers mailing list](http://groups.google.com/group/leaves-developers), which I keep an eye on.  But if you find a bug, be sure to visit the [tracker](http://github.com/brow/leaves/issues) or message me directly.
+[UIPageViewController]: https://developer.apple.com/library/ios/documentation/uikit/reference/UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html
+[LeavesViewController]: https://github.com/brow/leaves/blob/master/Leaves/LeavesViewController.h
+[LeavesView]: https://github.com/brow/leaves/blob/master/Leaves/LeavesView.h
