@@ -48,6 +48,7 @@ You may also use [LeavesView] directly. For more examples, see the included
 * [Two-page view](https://github.com/ole/leaves/tree/twopages) by [ole](https://github.com/ole) ([blog post](http://oleb.net/blog/2010/06/app-store-safe-page-curl-animations/))
 * [Zooming](https://github.com/hammerlyrodrigo/leaves) by [hammerlyrodrigo](https://github.com/hammerlyrodrigo)
 * [ARC](https://github.com/tjboudreaux/leaves) by [tjboudreaux](https://github.com/tjboudreaux)
+* [Retina support](https://github.com/Vortec4800/leaves) by [Vortec4800](https://github.com/Vortec4800)
 
 ## Articles
 * [App Store-safe Page Curl animations](http://oleb.net/blog/2010/06/app-store-safe-page-curl-animations/)
