@@ -49,6 +49,11 @@ You may also use [LeavesView] directly. For more examples, see the included
 * [Zooming](https://github.com/hammerlyrodrigo/leaves) by [hammerlyrodrigo](https://github.com/hammerlyrodrigo)
 * [ARC](https://github.com/tjboudreaux/leaves) by [tjboudreaux](https://github.com/tjboudreaux)
 
+## Articles
+* [App Store-safe Page Curl animations](http://oleb.net/blog/2010/06/app-store-safe-page-curl-animations/)
+* [How To Add A Slick iBooks Like Page Turning Effect Into Your Apps](http://maniacdev.com/2010/06/lick-ibooks-like-page-turning-effect)
+* [Building an iPad Reader for _War of the Worlds_](http://mobile.tutsplus.com/tutorials/iphone/building-an-ipad-reader-for-war-of-the-worlds/)
+
 [UIPageViewController]: https://developer.apple.com/library/ios/documentation/uikit/reference/UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html
 [LeavesViewController]: https://github.com/brow/leaves/blob/master/Leaves/LeavesViewController.h
 [LeavesView]: https://github.com/brow/leaves/blob/master/Leaves/LeavesView.h
