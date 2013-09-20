@@ -44,6 +44,11 @@ Creating a page-turning view controller is as simple as subclassing
 You may also use [LeavesView] directly. For more examples, see the included
 `LeavesExamples` project.
 
+##Forks
+* [Two-page view](https://github.com/ole/leaves/tree/twopages) by [ole](https://github.com/ole) ([blog post](http://oleb.net/blog/2010/06/app-store-safe-page-curl-animations/))
+* [Zooming](https://github.com/hammerlyrodrigo/leaves) by [hammerlyrodrigo](https://github.com/hammerlyrodrigo)
+* [ARC](https://github.com/tjboudreaux/leaves) by [tjboudreaux](https://github.com/tjboudreaux)
+
 [UIPageViewController]: https://developer.apple.com/library/ios/documentation/uikit/reference/UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html
 [LeavesViewController]: https://github.com/brow/leaves/blob/master/Leaves/LeavesViewController.h
 [LeavesView]: https://github.com/brow/leaves/blob/master/Leaves/LeavesView.h
