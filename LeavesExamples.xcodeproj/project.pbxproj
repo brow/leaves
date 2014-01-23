@@ -10,6 +10,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		7D35172818913B0A00AF1404 /* UIViewExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D35172718913B0A00AF1404 /* UIViewExampleViewController.m */; };
 		D337E308119B61A5003E5728 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D337E307119B61A5003E5728 /* LeavesCache.m */; };
 		D33D45A2117BDE0100BA7203 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33D45A1117BDE0100BA7203 /* QuartzCore.framework */; };
 		D33D4E5B117D818100BA7203 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D4E58117D818100BA7203 /* LeavesView.m */; };
@@ -35,6 +36,8 @@
 		1D6058910D05DD3D006BFB54 /* LeavesExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeavesExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7D35172618913B0A00AF1404 /* UIViewExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExampleViewController.h; sourceTree = "<group>"; };
+		7D35172718913B0A00AF1404 /* UIViewExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExampleViewController.m; sourceTree = "<group>"; };
 		D337E306119B61A5003E5728 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
 		D337E307119B61A5003E5728 /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
 		D33D45A1117BDE0100BA7203 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -139,6 +142,8 @@
 				EA97677917EB8E3C001A0F1C /* PDFExampleViewController.m */,
 				EA97677A17EB8E3C001A0F1C /* ProceduralExampleViewController.h */,
 				EA97677B17EB8E3C001A0F1C /* ProceduralExampleViewController.m */,
+				7D35172618913B0A00AF1404 /* UIViewExampleViewController.h */,
+				7D35172718913B0A00AF1404 /* UIViewExampleViewController.m */,
 			);
 			name = Classes;
 			path = LeavesExamples/Classes;
@@ -240,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA97678E17EB8E3C001A0F1C /* ProceduralExampleViewController.m in Sources */,
+				7D35172818913B0A00AF1404 /* UIViewExampleViewController.m in Sources */,
 				D33D4E5B117D818100BA7203 /* LeavesView.m in Sources */,
 				EA97678A17EB8E3C001A0F1C /* ExamplesViewController.m in Sources */,
 				EA97678D17EB8E3C001A0F1C /* PDFExampleViewController.m in Sources */,
