@@ -17,11 +17,12 @@
 
 @implementation LeavesCache
 
-- (id)initWithPageSize:(CGSize)aPageSize
+- (id)initWithPageSize:(CGSize)aPageSize andScaleFactor:(CGFloat)fScaleFactor
 {
 	if (self = [super init]) {
 		_pageSize = aPageSize;
 		_pageCache = [[NSMutableDictionary alloc] init];
+        _scaleFactor = fScaleFactor;
 	}
 	return self;
 }
@@ -38,12 +39,15 @@
     
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = CGBitmapContextCreate(NULL, 
-												 self.pageSize.width, 
-												 self.pageSize.height, 
+												 self.pageSize.width * self.scaleFactor,
+												 self.pageSize.height * self.scaleFactor,
 												 8,						/* bits per component*/
-												 self.pageSize.width * 4, 	/* bytes per row */
+												 self.pageSize.width * 4 * self.scaleFactor, 	/* bytes per row */
 												 colorSpace, 
 												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
+    CGContextScaleCTM(context, self.scaleFactor, self.scaleFactor);
+    
 	CGColorSpaceRelease(colorSpace);
 	CGContextClipToRect(context, CGRectMake(0, 0, self.pageSize.width, self.pageSize.height));
 	

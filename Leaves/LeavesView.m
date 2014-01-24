@@ -22,6 +22,7 @@
 @property (nonatomic, assign) CGRect nextPageRect, prevPageRect;
 @property (nonatomic, assign) BOOL touchIsActive, interactionLocked;
 @property (readonly) LeavesCache *pageCache;
+@property (readonly) CGFloat scaleFactor;
 
 @end
 
@@ -78,6 +79,16 @@ CGFloat distance(CGPoint a, CGPoint b);
 							   nil];
 	_bottomPageShadow.startPoint = CGPointMake(0,0.5);
 	_bottomPageShadow.endPoint = CGPointMake(1,0.5);
+    
+    _scaleFactor = 1.0;
+    
+    // Check if iOS > 4
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+        _topPage.contentsScale = \
+        _topPageReverseImage.contentsScale = \
+        _bottomPage.contentsScale = \
+        _scaleFactor = [[UIScreen mainScreen] scale];
+    }
 	
 	[_topPage addSublayer:_topPageShadow];
 	[_topPage addSublayer:_topPageOverlay];
@@ -89,9 +100,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[self.layer addSublayer:_topPage];
 	[self.layer addSublayer:_topPageReverse];
 	
-	_leafEdge = 1.0;
+    _leafEdge = 1.0;
     _backgroundRendering = NO;
-	_pageCache = [[LeavesCache alloc] initWithPageSize:self.bounds.size];
+    _pageCache = [[LeavesCache alloc] initWithPageSize:self.bounds.size andScaleFactor: self.scaleFactor];
 }
 
 - (id)initWithFrame:(CGRect)frame {
