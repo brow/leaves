@@ -14,8 +14,9 @@
 
 @property (nonatomic, assign) CGSize pageSize;
 @property (assign) id<LeavesViewDataSource> dataSource;
+@property (readonly) CGFloat scaleFactor;
 
-- (id)initWithPageSize:(CGSize)aPageSize;
+- (id)initWithPageSize:(CGSize)aPageSize andScaleFactor:(CGFloat)scaleFactor;
 - (CGImageRef)cachedImageForPageIndex:(NSUInteger)pageIndex;
 - (void)precacheImageForPageIndex:(NSUInteger)pageIndex;
 - (void)minimizeToPageIndex:(NSUInteger)pageIndex;
