@@ -1,4 +1,4 @@
-#Leaves
+# Leaves
 
 Leaves is an animated interface for navigating through a sequence of images
 using page-turning gestures. As of iOS 5, Leaves is mostly obsoleted by
@@ -6,12 +6,12 @@ using page-turning gestures. As of iOS 5, Leaves is mostly obsoleted by
 
 Leaves requires iOS 3.0 or later.
 
-##Installation
+## Installation
 
 1. Add the files in the `Leaves` subdirectory to your Xcode project.
 2. Ensure that your target links against `QuartzCore.framework`.
 
-##Usage
+## Usage
 
 Creating a page-turning view controller is as simple as subclassing
 [LeavesViewController][]:
@@ -44,7 +44,7 @@ Creating a page-turning view controller is as simple as subclassing
 You may also use [LeavesView] directly. For more examples, see the included
 `LeavesExamples` project.
 
-##Forks
+## Forks
 * [Two-page view](https://github.com/ole/leaves/tree/twopages) by [ole](https://github.com/ole) ([blog post](http://oleb.net/blog/2010/06/app-store-safe-page-curl-animations/))
 * [Zooming](https://github.com/hammerlyrodrigo/leaves) by [hammerlyrodrigo](https://github.com/hammerlyrodrigo)
 * [ARC](https://github.com/tjboudreaux/leaves) by [tjboudreaux](https://github.com/tjboudreaux)
